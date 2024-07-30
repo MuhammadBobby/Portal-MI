@@ -18,6 +18,7 @@
 
 <body class="bg-orange-50 font-urbanist">
     <x-landingPage.jumbotron />
+    <x-navbar />
 </body>
 
 </html>

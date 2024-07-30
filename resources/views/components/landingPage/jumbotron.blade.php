@@ -13,12 +13,7 @@
             Informatika.</p>
 
         <div class="flex items-center gap-5 my-5 md:my-8">
-            <div class="relative border-2 border-black rounded-full group hover:scale-110">
-                <div
-                    class="absolute w-full h-full transition-all rounded-full top-2 left-1 bg-secondary -z-10 group-hover:-z-10 group-hover:top-0 group-hover:left-0">
-                </div>
-                <a href="#" class="px-2 py-1 text-sm font-semibold md:text-base">Get started</a>
-            </div>
+            <x-elements.buttonShadow href="#">Get started</x-elements.buttonShadow>
         </div>
 
         <a href="#" class="flex items-center gap-2 group">
@@ -34,16 +29,16 @@
             <img src="/assets/images/helloTech.webp" alt="Hello Tech Image" class="w-full rounded-lg">
         </div>
         <div
-            class="absolute hidden w-1/2 pb-2 border-b-2 border-white rounded-lg -top-10 md:block left-1/3 border-e-2 pe-2 ">
+            class="absolute top-0 hidden w-1/2 pb-2 border-b-2 border-white rounded-lg md:block left-1/3 border-e-2 pe-2 ">
             <img src="/assets/images/jurnalTech.webp" alt="Hello Tech Image" class="w-full rounded-lg">
         </div>
         <div
-            class="h-96 md:h-full absolute right-0 w-[80%] bottom-[20%] md:top-0 md:bottom-0 rounded-lg bg-secondary -z-10">
+            class="h-96 md:h-full absolute right-0 w-[80%] bottom-[20%] md:top-10 md:bottom-0 rounded-lg bg-secondary -z-10">
         </div>
-        <div class="absolute bottom-10 -right-10 md:-bottom-20 md:right-10 w-[200px] h-[200px]"
+        <div class="absolute bottom-10 -right-10 md:-bottom-32 md:right-10 w-[200px] h-[200px]"
             style="background-image: url(/assets/elements/circleDot.svg);">
         </div>
-        <div class="absolute bottom-0 hidden md:block -right-20 w-[200px] h-[200px]"
+        <div class="absolute -bottom-10 hidden md:block -right-20 w-[200px] h-[200px]"
             style="background-image: url(/assets/elements/circleDot.svg);">
         </div>
     </div>
