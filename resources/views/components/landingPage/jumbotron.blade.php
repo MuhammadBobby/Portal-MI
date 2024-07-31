@@ -1,10 +1,10 @@
-<section class="flex flex-wrap justify-center h-screen gap-5 p-10 md:items-center md:px-16 md:py-20">
+<section class="flex flex-wrap justify-center h-screen gap-5 p-16 md:items-center md:px-16 md:py-20">
     <div class="w-full md:w-[40%]">
         <div class="flex items-center gap-2">
             <img src="/assets/elements/load.svg" alt="Load Icon" class="w-10">
             <span class="text-sm font-semibold text-secondary md:text-base">Portal MI</span>
         </div>
-        <h1 class="py-3 text-4xl font-bold md:text-7xl md:font-extrabold">Selamat Datang di <span
+        <h1 class="pb-3 text-4xl font-bold md:text-7xl md:font-extrabold">Selamat Datang di <span
                 class="text-primary">Portal MI</span>,
         </h1>
         <p class="font-light tracking-wide md:text-lg">portal berita
@@ -13,7 +13,7 @@
             Informatika.</p>
 
         <div class="flex items-center gap-5 my-5 md:my-8">
-            <x-elements.buttonShadow href="#">Get started</x-elements.buttonShadow>
+            <x-elements.buttonShadow href="#">Read article</x-elements.buttonShadow>
         </div>
 
         <a href="#" class="flex items-center gap-2 group">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -17,8 +17,12 @@
 </head>
 
 <body class="bg-orange-50 font-urbanist">
-    <x-landingPage.jumbotron />
     <x-navbar />
+    <x-landingPage.jumbotron />
+    <x-landingPage.top />
+    <x-landingPage.parallax />
+
+    <script src="/js/navbar.js"></script>
 </body>
 
 </html>
