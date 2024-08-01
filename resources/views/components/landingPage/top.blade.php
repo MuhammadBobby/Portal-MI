@@ -1,15 +1,12 @@
 <div class="mt-72 md:mt-10">
     <x-elements.section_template id="top">
-        <header class="mb-10 text-center">
-            <h6 class="text-base font-semibold text-primary md:text-lg">Berita Terpopuler Saat Ini</h6>
-            <h1 class="text-3xl font-bold tracking-tight md:text-5xl">Top News</h1>
-            <p class="max-w-lg mx-auto font-light text-gray-500 text-md md:text-base">Lorem ipsum, dolor sit amet
-                consectetur
-                adipisicing
-                elit. Mollitia facilis suscipit, nulla vitae eos voluptate atque officiis dicta aut, ex a dolorum in.
-                Nobis sit facilis, dolor molestiae ratione dicta.
-            </p>
-        </header>
+        <x-elements.header_center subtitle="Berita Terpopuler Saat Ini" title="Top News">
+            Lorem ipsum, dolor sit amet
+            consectetur
+            adipisicing
+            elit. Mollitia facilis suscipit, nulla vitae eos voluptate atque officiis dicta aut, ex a dolorum in.
+            Nobis sit facilis, dolor molestiae ratione dicta.
+        </x-elements.header_center>
 
         <div class="main">
             <div class="mt-10 md:mt-16 lg:flex lg:space-x-5">
