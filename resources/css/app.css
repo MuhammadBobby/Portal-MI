@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.bg-image {
-    background-image: url(/assets/elements/circleDot.svg);
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+    width: 0;
 }

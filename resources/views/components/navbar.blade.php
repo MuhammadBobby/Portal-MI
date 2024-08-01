@@ -10,7 +10,7 @@
             <span class="self-center text-2xl font-bold text-primary whitespace-nowrap">Portal MI</span>
         </a>
         <div class="flex space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse">
-            <x-elements.buttonShadow href="#">Sign in</x-elements.buttonShadow>
+            <x-elements.button_shadow href="#">Sign in</x-elements.button_shadow>
             <button data-collapse-toggle="navbar-sticky" type="button"
                 class="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
                 aria-controls="navbar-sticky" aria-expanded="false">
@@ -28,7 +28,7 @@
                 @foreach ($menu as $item)
                     <li>
                         <a href={{ $item === 'Home' ? '#' : '#' . strtolower($item) }}
-                            class="block px-3 py-2 text-gray-900 rounded nav-item hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0"
+                            class="block px-3 py-2 text-gray-900 bg-transparent rounded nav-item md:text-gray-900 md:bg-transparent hover:bg-primary hover:text-white md:hover:bg-transparent md:hover:text-primary md:p-0"
                             aria-current="page">{{ $item }}</a>
                     </li>
                 @endforeach

@@ -13,10 +13,10 @@
             Informatika.</p>
 
         <div class="flex items-center gap-5 my-5 md:my-8">
-            <x-elements.buttonShadow href="#">Read article</x-elements.buttonShadow>
+            <x-elements.button_shadow href="#">Read article</x-elements.button_shadow>
         </div>
 
-        <a href="#" class="flex items-center gap-2 group">
+        <a href="#top" class="flex items-center gap-2 group">
             <img src="/assets/elements/arrowBottom.svg" alt="Arrrow Bottom Icon" class="w-5">
             <span class="text-xs font-semibold md:text-sm group-hover:underline">Scroll down to explore</span>
         </a>

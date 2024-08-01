@@ -1,10 +1,13 @@
 <div class="mt-72 md:mt-10">
-    <section id="top" class="px-5 py-10 md:px-16 md:py-24">
+    <x-elements.section_template id="top">
         <header class="mb-10 text-center">
-            <h6 class="text-base font-semibold text-primary">Berita Terpopuler Saat Ini</h6>
-            <h1 class="mt-3 text-3xl font-bold tracking-tight">Top News</h1>
-            <p class="text-sm font-light text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-                tempore tenetur voluptatem?
+            <h6 class="text-base font-semibold text-primary md:text-lg">Berita Terpopuler Saat Ini</h6>
+            <h1 class="text-3xl font-bold tracking-tight md:text-5xl">Top News</h1>
+            <p class="max-w-lg mx-auto font-light text-gray-500 text-md md:text-base">Lorem ipsum, dolor sit amet
+                consectetur
+                adipisicing
+                elit. Mollitia facilis suscipit, nulla vitae eos voluptate atque officiis dicta aut, ex a dolorum in.
+                Nobis sit facilis, dolor molestiae ratione dicta.
             </p>
         </header>
 
@@ -16,7 +19,7 @@
                     <a href="https://thenextweb.com/news/why-php-continues-to-be-a-popular-but-divisive-programming-language"
                         rel="noopener" target="_blank">
                         <img src="/assets/images/helloTech.webp" loading="lazy" alt="News Image"
-                            class="w-full h-auto mb-3 rounded-md md:w-full md:mb-2 md:max-h-[48rem]" />
+                            class="w-full h-auto mb-3 rounded-md md:w-full md:mb-2 md:max-h-[48rem] object-cover" />
                     </a>
                     <div class="md:w-full">
                         <p class="text-sm font-semibold text-secondary-yellow">Programming</p>
@@ -45,7 +48,7 @@
                         <a href="https://computradetech.com/id/blog-id/8-tren-internet-of-things-iot-di-2024-yang-wajib-dipantau/"
                             rel="noopener" target="_blank">
                             <img src="/assets/images/helloTech.webp" loading="lazy" alt="News Image"
-                                class="w-full h-auto mb-3 rounded-md md:mb-2 lg:h-56" />
+                                class="object-cover w-full h-auto mb-3 rounded-md md:mb-2 lg:h-56" />
                         </a>
                         <div class="md:w-full">
                             <p class="text-sm font-semibold text-secondary-yellow">Internet Of Things</p>
@@ -72,7 +75,7 @@
                         <a href="https://bageur.id/tren-desain-ui-ux-terbaru-di-tahun-2024/" rel="noopener"
                             target="_blank" class="inline-block w-full h-full lg:me-5">
                             <img src="/assets/images/helloTech.webp" loading="lazy" alt="News Image"
-                                class="w-full mb-3 rounded-md md:h-96 md:mb-2 lg:h-full lg:mb-0 lg:mr-5" />
+                                class="object-cover w-full mb-3 rounded-md md:h-96 md:mb-2 lg:h-full lg:mb-0 lg:mr-5" />
                         </a>
                         <div class="w-2/3">
                             <p class="text-sm font-semibold text-secondary-yellow">Others</p>
@@ -92,5 +95,5 @@
             </div>
         </div>
 
-    </section>
+    </x-elements.section_template>
 </div>
