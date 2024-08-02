@@ -16,13 +16,17 @@
         rel="stylesheet">
 </head>
 
-<body class="bg-orange-50 font-urbanist">
+<body class="overflow-x-hidden bg-orange-50 font-urbanist">
     <x-navbar />
+
     <x-landingPage.jumbotron />
     <x-landingPage.top />
     <x-landingPage.parallax />
     <x-landingPage.news />
     <x-landingPage.category />
+    <x-landingPage.contact />
+
+    <x-footer />
 
     <script src="/js/navbar.js"></script>
     <script src="/js/script.js"></script>

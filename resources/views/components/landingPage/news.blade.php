@@ -1,6 +1,6 @@
 <x-elements.section_template id="news">
     <header class="mb-10">
-        <h1 class="text-3xl font-bold tracking-tight md:text-5xl text-primary">Top News</h1>
+        <h1 class="text-3xl font-bold tracking-tight md:text-5xl text-primary">News Portal</h1>
         <p class="max-w-2xl font-light text-gray-500 text-md md:text-base">Lorem ipsum, dolor sit amet
             consectetur
             adipisicing
@@ -19,6 +19,13 @@
             <x-elements.card_news />
             <x-elements.card_news />
         </div>
+
+        <div class="w-32 mx-auto mt-10 text-center">
+            <a href="#"
+                class="block px-5 py-3 font-bold text-white transition-all rounded-lg shadow-sm bg-primary hover:shadow-2xl hover:shadow-gray-400 hover:scale-110 hover:bg-opacity-90">All
+                news</a>
+        </div>
+
         <!-- Slider controls -->
         <button id="scrollLeftBtn" type="button"
             class="absolute top-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer start-0 group focus:outline-none"
