@@ -27,7 +27,7 @@
                 class="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
                 @foreach ($menu as $item)
                     <li>
-                        <a href={{ $item === 'Home' ? '#' : '#' . strtolower($item) }}
+                        <a href={{ $item === 'Home' ? '/#' : '/#' . strtolower($item) }}
                             class="block px-3 py-2 text-gray-900 bg-transparent rounded nav-item md:text-gray-900 md:bg-transparent hover:bg-primary hover:text-white md:hover:bg-transparent md:hover:text-primary md:p-0"
                             aria-current="page">{{ $item }}</a>
                     </li>
@@ -36,3 +36,7 @@
         </div>
     </div>
 </nav>
+
+
+
+<script src="/js/navbar.js"></script>
