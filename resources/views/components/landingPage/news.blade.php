@@ -21,7 +21,7 @@
         </div>
 
         <div class="w-32 mx-auto mt-10 text-center">
-            <a href="#"
+            <a href="/news"
                 class="block px-5 py-3 font-bold text-white transition-all rounded-lg shadow-sm bg-primary hover:shadow-2xl hover:shadow-gray-400 hover:scale-110 hover:bg-opacity-90">All
                 news</a>
         </div>
