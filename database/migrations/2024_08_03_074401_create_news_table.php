@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('content');
             $table->foreignId('category')->nullable()->constrained('categories')->nullOnDelete();
             $table->foreignId('author')->constrained('users')->cascadeOnDelete();
-            $table->timestamp('published_at')->nullable();
+            $table->enum('top', ['yes', 'no'])->default('no');
             $table->timestamps();
         });
     }

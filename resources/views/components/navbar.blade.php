@@ -1,7 +1,3 @@
-@php
-    $menu = ['Home', 'Top News', 'News', 'Category', 'Contact'];
-@endphp
-
 <nav id="navbar"
     class="fixed top-0 z-20 w-full bg-white border-b border-gray-200 shadow-md bg-opacity-30 backdrop-blur-sm md:bg-transparent md:backdrop-blur-0 md:border-0 md:shadow-none">
     <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-3 mx-auto md:px-8">
@@ -25,13 +21,31 @@
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
             <ul id="nav"
                 class="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
-                @foreach ($menu as $item)
-                    <li>
-                        <a href={{ $item === 'Home' ? '/#' : '/#' . strtolower($item) }}
-                            class="block px-3 py-2 text-gray-900 bg-transparent rounded nav-item md:text-gray-900 md:bg-transparent hover:bg-primary hover:text-white md:hover:bg-transparent md:hover:text-primary md:p-0"
-                            aria-current="page">{{ $item }}</a>
-                    </li>
-                @endforeach
+                <li>
+                    <a href="/#"
+                        class="block px-3 py-2 text-gray-900 bg-transparent rounded nav-item md:text-gray-900 md:bg-transparent hover:bg-primary hover:text-white md:hover:bg-transparent md:hover:text-primary md:p-0"
+                        aria-current="page">Home</a>
+                </li>
+                <li>
+                    <a href="/#top"
+                        class="block px-3 py-2 text-gray-900 bg-transparent rounded nav-item md:text-gray-900 md:bg-transparent hover:bg-primary hover:text-white md:hover:bg-transparent md:hover:text-primary md:p-0"
+                        aria-current="page">Top News</a>
+                </li>
+                <li>
+                    <a href="/#news"
+                        class="block px-3 py-2 text-gray-900 bg-transparent rounded nav-item md:text-gray-900 md:bg-transparent hover:bg-primary hover:text-white md:hover:bg-transparent md:hover:text-primary md:p-0"
+                        aria-current="page">News</a>
+                </li>
+                <li>
+                    <a href="/#category"
+                        class="block px-3 py-2 text-gray-900 bg-transparent rounded nav-item md:text-gray-900 md:bg-transparent hover:bg-primary hover:text-white md:hover:bg-transparent md:hover:text-primary md:p-0"
+                        aria-current="page">Category</a>
+                </li>
+                <li>
+                    <a href="/#contact"
+                        class="block px-3 py-2 text-gray-900 bg-transparent rounded nav-item md:text-gray-900 md:bg-transparent hover:bg-primary hover:text-white md:hover:bg-transparent md:hover:text-primary md:p-0"
+                        aria-current="page">Contact</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -40,102 +54,3 @@
 
 
 <script src="/js/navbar.js"></script>
-{{-- <script>
-    // Mendapatkan semua elemen nav item
-    const navItems = await document.querySelectorAll("#nav .nav-item");
-    const navbar = document.getElementById("navbar");
-    const navbarSticky = document.getElementById("navbar-sticky");
-    const collapseToggle = document.querySelector(
-        "[data-collapse-toggle='navbar-sticky']"
-    );
-
-    // Fungsi untuk menutup navbar sticky pada mobile
-    function closeNavbarSticky() {
-        navbarSticky.classList.add("hidden");
-        collapseToggle.setAttribute("aria-expanded", "false");
-    }
-
-    navItems.forEach((navItem) => {
-        navItem.addEventListener("click", function() {
-            // Menghapus class aktif dari semua nav item
-            navItems.forEach((item) => {
-                item.classList.remove(
-                    "text-white",
-                    "bg-teal-500",
-                    "md:bg-transparent",
-                    "md:text-teal-500"
-                );
-                item.classList.add(
-                    "text-gray-900",
-                    "bg-transparent",
-                    "md:text-gray-900",
-                    "md:bg-transparent"
-                );
-            });
-
-            // Menambahkan class aktif ke nav item yang diklik
-            this.classList.remove(
-                "text-gray-900",
-                "bg-transparent",
-                "md:text-gray-900",
-                "md:bg-transparent"
-            );
-            this.classList.add(
-                "text-white",
-                "bg-teal-500",
-                "md:bg-transparent",
-                "md:text-teal-500"
-            );
-        });
-    });
-
-    // Fungsi untuk menangani scroll event
-    function handleScroll() {
-        if (window.scrollY > 0) {
-            navbar.classList.remove(
-                "md:bg-transparent",
-                "md:backdrop-blur-0",
-                "md:border-0",
-                "md:shadow-none"
-            );
-        } else {
-            navbar.classList.add(
-                "md:bg-transparent",
-                "md:backdrop-blur-0",
-                "md:border-0",
-                "md:shadow-none"
-            );
-        }
-    }
-
-    // Menambahkan event listener untuk scroll event
-    window.addEventListener("scroll", handleScroll);
-
-    // Memastikan navbar dalam keadaan awal yang benar
-    handleScroll();
-
-    // Menangani klik tombol collapse
-    collapseToggle.addEventListener("click", function() {
-        const isHidden = navbarSticky.classList.contains("hidden");
-        if (isHidden) {
-            navbarSticky.classList.remove("hidden");
-            collapseToggle.setAttribute("aria-expanded", "true");
-        } else {
-            closeNavbarSticky();
-        }
-    });
-
-    // Menutup navbar sticky ketika area di luar navbar di-klik
-    document.addEventListener("click", function(event) {
-        const isClickInsideNavbar = navbar.contains(event.target);
-        const isClickInsideCollapseToggle = collapseToggle.contains(event.target);
-
-        if (
-            !isClickInsideNavbar &&
-            !isClickInsideCollapseToggle &&
-            window.innerWidth < 768
-        ) {
-            closeNavbarSticky();
-        }
-    });
-</script> --}}

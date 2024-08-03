@@ -1,5 +1,5 @@
 // Mendapatkan semua elemen nav item
-const navItems = await document.querySelectorAll("#nav .nav-item");
+const navItems = document.querySelectorAll("#nav .nav-item");
 const navbar = document.getElementById("navbar");
 const navbarSticky = document.getElementById("navbar-sticky");
 const collapseToggle = document.querySelector(

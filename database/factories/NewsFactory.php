@@ -23,7 +23,7 @@ class NewsFactory extends Factory
             'image' => '/assets/images/helloTech.webp',
             'category' => Category::factory(),  // Membuat category baru untuk setiap news
             'author' => User::factory(), // Membuat user baru untuk setiap news
-            'published_at' => fake()->dateTime,
+            'top' => fake()->randomElement(['yes', 'no'])
         ];
     }
 }
