@@ -29,6 +29,8 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'kelas' => fake()->randomElement(['MI-5A', 'MI-5B', 'MI-5C', 'MI-5D']),
+            'angkatan' => fake()->year
         ];
     }
 
