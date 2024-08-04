@@ -1,3 +1,5 @@
+@props(['news'])
+
 <x-elements.section_template id="news">
     <header class="mb-10">
         <h1 class="text-3xl font-bold tracking-tight md:text-5xl text-primary">News Portal</h1>
@@ -10,14 +12,10 @@
     </header>
 
     <div class="relative main">
-        <div class="flex items-center gap-3 overflow-x-scroll scrollbar-hide">
-            <x-elements.card_news />
-            <x-elements.card_news />
-            <x-elements.card_news />
-            <x-elements.card_news />
-            <x-elements.card_news />
-            <x-elements.card_news />
-            <x-elements.card_news />
+        <div class="flex gap-3 overflow-x-scroll scrollbar-hide">
+            @foreach ($news as $item)
+                <x-elements.card_news :item="$item" />
+            @endforeach
         </div>
 
         <div class="w-32 mx-auto mt-10 text-center">

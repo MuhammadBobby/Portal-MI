@@ -20,9 +20,9 @@ class NewsFactory extends Factory
             'title' => fake()->sentence,
             'content' => fake()->paragraph,
             'slug' => fake()->slug,
-            'image' => '/assets/images/helloTech.webp',
-            'category' => Category::factory(),  // Membuat category baru untuk setiap news
-            'author' => User::factory(), // Membuat user baru untuk setiap news
+            'image' => 'helloTech.webp',
+            'category_id' => Category::factory(),  // Membuat category baru untuk setiap news
+            'author_id' => User::factory(), // Membuat user baru untuk setiap news
             'top' => fake()->randomElement(['yes', 'no'])
         ];
     }

@@ -17,8 +17,14 @@ return new class extends Migration
             $table->string('slug');
             $table->string('image');
             $table->text('content');
-            $table->foreignId('category')->nullable()->constrained('categories')->nullOnDelete();
-            $table->foreignId('author')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('author_id')->constrained(
+                table: 'users',
+                indexName: 'posts_author_id'
+            );
+            $table->foreignId('category_id')->constrained(
+                table: 'categories',
+                indexName: 'posts_category_id'
+            );
             $table->enum('top', ['yes', 'no'])->default('no');
             $table->timestamps();
         });

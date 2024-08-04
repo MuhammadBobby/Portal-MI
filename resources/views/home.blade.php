@@ -1,8 +1,8 @@
 <x-layout_template title="{{ $title }}">
     <x-landingPage.jumbotron />
-    <x-landingPage.top />
+    <x-landingPage.top :top="$topNews" />
     <x-landingPage.parallax />
-    <x-landingPage.news />
+    <x-landingPage.news :news="$news" />
     <x-landingPage.category />
     <x-landingPage.contact />
 </x-layout_template>
