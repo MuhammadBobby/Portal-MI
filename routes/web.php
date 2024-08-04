@@ -5,5 +5,4 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\LandingPageController;
 
 Route::get('/', [LandingPageController::class, 'index']);
-
 Route::get('/news', [NewsController::class, 'index']);

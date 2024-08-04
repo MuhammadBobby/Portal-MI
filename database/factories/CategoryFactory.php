@@ -19,6 +19,8 @@ class CategoryFactory extends Factory
         return [
             'name' => fake()->sentence(rand(1, 2), false),
             'slug' => fake()->slug(),
+            'logo' => fake()->imageUrl(),
+            'color' => fake()->hexColor(),
             'description' => fake()->paragraph(),
         ];
     }
