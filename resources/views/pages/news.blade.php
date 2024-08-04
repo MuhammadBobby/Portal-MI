@@ -9,7 +9,7 @@
             <a href="">
                 <div class="flex flex-col items-center mx-2 md:mx-5 ">
                     <div
-                        class="bg-secondary rounded-full p-6 flex items-center justify-center w-24 h-24  hover:bg-gray-300 hover:scale-125 transition-all">
+                        class="bg-secondary rounded-full p-4 md:p-6 flex items-center justify-center w-16 h-16 md:w-24 md:h-24  hover:bg-gray-300 hover:scale-125 transition-all">
                         <svg class="w-12 h-12 text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd"
@@ -17,14 +17,14 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </div>
-                    <h2 class="text-xl font-bold mt-4 hover:text-primary">Pemrograman</h2>
+                    <h2 class="text-sm md:text-xl font-bold mt-4 hover:text-primary">Pemrograman</h2>
                 </div>
             </a>
 
             <a href="">
                 <div class="flex flex-col items-center mx-2 md:mx-5 ">
                     <div
-                        class="bg-secondary rounded-full p-6 flex items-center justify-center w-24 h-24  hover:bg-gray-300 hover:scale-125 transition-all">
+                        class="bg-secondary rounded-full p-4 md:p-6 flex items-center justify-center w-16 h-16 md:w-24 md:h-24  hover:bg-gray-300 hover:scale-125 transition-all">
                         <svg class="w-12 h-12 text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd"
@@ -32,14 +32,14 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </div>
-                    <h2 class="text-xl font-bold mt-4 hover:text-primary">UI/UX</h2>
+                    <h2 class="text-sm md:text-xl font-bold mt-4 hover:text-primary">Pemrograman</h2>
                 </div>
             </a>
 
             <a href="">
                 <div class="flex flex-col items-center mx-2 md:mx-5 ">
                     <div
-                        class="bg-secondary rounded-full p-6 flex items-center justify-center w-24 h-24  hover:bg-gray-300 hover:scale-125 transition-all">
+                        class="bg-secondary rounded-full p-4 md:p-6 flex items-center justify-center w-16 h-16 md:w-24 md:h-24  hover:bg-gray-300 hover:scale-125 transition-all">
                         <svg class="w-12 h-12 text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd"
@@ -47,7 +47,7 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </div>
-                    <h2 class="text-xl font-bold mt-4 hover:text-primary">Pemrograman</h2>
+                    <h2 class="text-sm md:text-xl font-bold mt-4 hover:text-primary">Pemrograman</h2>
                 </div>
             </a>
 
