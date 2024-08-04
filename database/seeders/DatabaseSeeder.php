@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call([CategorySeeder::class]);
 
 
-        News::factory(10)->recycle([
+        News::factory(20)->recycle([
             Category::all(),
             User::factory(3)->create()
         ])->create();
