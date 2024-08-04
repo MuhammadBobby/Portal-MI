@@ -3,15 +3,16 @@
 
 <x-elements.section_template id="category">
     <x-elements.header_center title="News Category" subtitle="Kategori Berita Saat Ini">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur facere natus vitae illo officia.
+        Temukan berbagai kategori berita yang ingin anda cari hanya dengan satu kali klik.
     </x-elements.header_center>
 
-    <div class="relative pb-3 border-b-2 rounded-lg border-primary pe-3 border-e-2 md:mx-16 md:pe-5 md:pb-5">
-        <div
-            class="flex flex-col flex-wrap justify-center gap-5 p-5 py-10 rounded-lg shadow-xl md:gap-10 md:flex-row main bg-secondary">
+    <div
+        class="relative pb-3 overflow-hidden border-b-2 rounded-lg md:overflow-visible border-primary pe-3 border-e-2 lg:mx-16 md:pe-5 md:pb-5">
+        <div id="category-container"
+            class="flex items-stretch gap-5 p-5 py-10 overflow-scroll rounded-lg shadow-xl md:justify-center md:flex-wrap md:gap-10 md:flex-row main bg-secondary scrollbar-hide">
             @foreach ($categories as $category)
                 <div
-                    class="flex flex-col justify-between w-2/3 p-3 text-center transition-all bg-white rounded-md shadow-lg md:w-1/4 hover:scale-105 hover:bg-gray-100 -z-0">
+                    class="flex flex-col justify-between min-w-[60%] p-3 text-center transition-all bg-white rounded-md shadow-lg md:min-w-0 md:max-w-[25%] hover:scale-105 hover:bg-gray-100 -z-0">
                     <div>
                         <a href="/category/{{ $category->slug }}">
 
@@ -34,7 +35,35 @@
                 </div>
             @endforeach
 
+            <!-- Slider controls -->
+            <button id="categoryLeftBtn" type="button"
+                class="absolute top-0 z-10 flex items-center justify-center h-full px-4 cursor-pointer md:hidden start-0 group focus:outline-none"
+                data-carousel-prev data-aos="fade-right">
+                <span
+                    class="inline-flex items-center justify-center w-10 h-10 bg-gray-400 rounded-full group-hover:bg-gray-200 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                    <svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 1 1 5l4 4" data-aos="fade-up" />
+                    </svg>
+                    <span class="sr-only">Previous</span>
+                </span>
+            </button>
+            <button id="categoryRightBtn" type="button"
+                class="absolute top-0 z-10 flex items-center justify-center h-full px-4 cursor-pointer md:hidden end-0 group focus:outline-none"
+                data-carousel-next data-aos="fade-left">
+                <span
+                    class="inline-flex items-center justify-center w-10 h-10 bg-gray-400 rounded-full group-hover:bg-gray-200 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                    <svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 9 4-4-4-4" data-aos="fade-up" />
+                    </svg>
+                    <span class="sr-only">Next</span>
+                </span>
+            </button>
         </div>
+
 
         {{-- other --}}
         <div class="absolute -top-32 hidden md:block right-0 w-[200px] h-[200px]"

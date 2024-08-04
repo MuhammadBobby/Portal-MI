@@ -10,13 +10,14 @@
                     <a href="#" class="hover:underline me-4 md:me-6">About</a>
                 </li>
                 <li>
-                    <a href="#" class="hover:underline me-4 md:me-6">News Portal</a>
+                    <a href="/news" class="hover:underline me-4 md:me-6">News Portal</a>
                 </li>
                 <li>
-                    <a href="#" class="hover:underline me-4 md:me-6">MI</a>
+                    <a href="https://mi.polmed.ac.id/" target="_blank" rel="noopener"
+                        class="hover:underline me-4 md:me-6">MI</a>
                 </li>
                 <li>
-                    <a href="#" class="hover:underline">Contact</a>
+                    <a href="/#contact" class="hover:underline">Contact</a>
                 </li>
             </ul>
         </div>

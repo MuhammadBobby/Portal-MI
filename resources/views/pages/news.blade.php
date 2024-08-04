@@ -1,13 +1,14 @@
 <x-layout_template title="{{ $title }}">
     <x-elements.section_template id="News">
         <x-elements.header_center title="News Portal MI" subtitle="Berita hangat saat ini">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, accusantium!
+            Temukan berita terbaru dan terkini di Prodi Manajemen Informatika. Temukan dan ketahui berbagai informasi
+            dan terus mengupdate informasinya di Portal MI.
         </x-elements.header_center>
 
         <div class="flex flex-wrap justify-center mt-6 drop-shadow-xl ">
 
             @foreach ($categories as $category)
-                <a href="" class="block w-1/3 mt-3 text-center md:w-1/5">
+                <a href="/category/{{ $category->slug }}" class="block w-1/3 mt-3 text-center md:w-1/5">
                     <div class="flex flex-col items-center mx-2 md:mx-5">
                         <div
                             class="flex items-center justify-center w-16 h-16 p-4 rounded-full bg-[{{ $category->color }}] md:p-6 md:w-24 md:h-24 group hover:bg-opacity-70">
@@ -35,8 +36,8 @@
                                 class="object-cover w-full transition-all rounded-lg max-h-40 md:max-h-36 group-hover:scale-110">
                         </div>
                         <div class="w-full pl-3">
-                            <span
-                                class="bg-white  text-[{{ $item->category->color }}] text-xs font-medium me-2 px-2.5 py-0.5 rounded md:mb-3">{{ $item->category->name }}</span>
+                            <x-elements.badges_category
+                                color="{{ $item->category->color }}">{{ $item->category->name }}</x-elements.badges_category>
                             <h2 class="text-2xl font-bold md:text-3xl">{{ $item->title }}</h2>
                             <p class="text-sm text-green-800 md:text-base md:pb-3">
                                 {{ Str::limit($item->content, 200) }}

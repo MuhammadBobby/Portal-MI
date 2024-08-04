@@ -1,6 +1,7 @@
 <x-elements.section_template id="contact">
     <x-elements.header_center title="Contact Us" subtitle="Hubungi Kami">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur facere natus vitae illo officia.
+        Kamu memiliki berita terbaru yang ingin dibagikan? Hubungi kami sekarang. Sampakan juga saran dan kritik kamu
+        disini.
     </x-elements.header_center>
 
     <div class="relative mx-auto main md:w-2/3 w-[90%]">

@@ -1,11 +1,8 @@
 <div class="mt-72 md:mt-10">
     <x-elements.section_template id="top">
         <x-elements.header_center subtitle="Berita Terpopuler Saat Ini" title="Top News">
-            Lorem ipsum, dolor sit amet
-            consectetur
-            adipisicing
-            elit. Mollitia facilis suscipit, nulla vitae eos voluptate atque officiis dicta aut, ex a dolorum in.
-            Nobis sit facilis, dolor molestiae ratione dicta.
+            Lihat berita terpopuler saat ini di Prodi Manajemen Informatika. Temukan dan ketahui berbagai informasi
+            terbaru dan terpopuler yang sedang hangat diperbincangkan disini.
         </x-elements.header_center>
 
         <div class="main">
@@ -18,7 +15,6 @@
                             class="w-full h-auto mb-3 rounded-md md:w-full md:mb-2 md:max-h-[48rem] object-cover" />
                     </a>
                     <div class="md:w-full">
-                        <p class="text-sm font-semibold text-secondary-yellow">{{ $top[0]->category->name }}</p>
                         <h1
                             class="mt-1 text-lg font-bold leading-5 text-primary font-montserrat md:text-xl lg:text-2xl">
                             <a href={{ $top[0]->slug }} class="hover:text-secondary-yellow"><span
@@ -45,7 +41,6 @@
                                 class="object-cover w-full h-auto mb-3 rounded-md md:mb-2 lg:h-56" />
                         </a>
                         <div class="md:w-full">
-                            <p class="text-sm font-semibold text-secondary-yellow">{{ $top[1]->category->name }}</p>
                             <h1
                                 class="mt-1 text-lg font-bold leading-5 text-primary font-montserrat md:text-xl lg:text-2xl">
                                 <a href={{ $top[1]->slug }} class="hover:text-secondary-yellow"><span
@@ -70,7 +65,6 @@
                                 class="object-cover w-full mb-3 rounded-md md:h-96 md:mb-2 lg:h-full lg:mb-0 lg:mr-5" />
                         </a>
                         <div class="w-2/3">
-                            <p class="text-sm font-semibold text-secondary-yellow">{{ $top[2]->category->name }}</p>
                             <h1 class="mt-1 text-lg font-bold leading-5 text-primary font-montserrat lg:text-2xl">
                                 <a href={{ $top[2]->slug }} class="hover:text-secondary-yellow"><span
                                         class="text-gray-700">#Top 3

@@ -10,10 +10,10 @@
         <p class="font-light tracking-wide md:text-lg">portal berita
             dan informasi terkini dari
             Prodi Manajemen
-            Informatika.</p>
+            Informatika. Temukan beritanya, terus update informasinya.</p>
 
         <div class="flex items-center gap-5 my-5 md:my-8">
-            <x-elements.button_shadow href="#">Read article</x-elements.button_shadow>
+            <x-elements.button_shadow href="/news">Read article</x-elements.button_shadow>
         </div>
 
         <a href="#top" class="flex items-center gap-2 group">
