@@ -5,7 +5,7 @@
 <x-layout_template title="{{ $title }}">
     <div class="w-full mx-auto my-24 md:w-1/2">
         <article>
-            <p class="mx-3 my-2 text-xs font-semibold font-gray-900">
+            <p class="mx-3 my-2 text-xs font-semibold text-gray-600 md:text-sm">
                 <a href="/" class="hover:underline">Portal MI</a> /
                 <a href="/news#{{ $news->slug }}" class="hover:underline">News</a> /
                 <span class="text-primary">{{ Str::limit($news->title, 20) }}</span>
@@ -24,9 +24,12 @@
 
             <div
                 class="flex flex-col gap-3 mx-5 my-5 text-sm font-semibold text-justify md:text-base md:tracking-normal md:mx-8 md:leading-5 md:font-normal">
-                <p class="tracking-wide "><span class="font-extrabold">POLMED - </span>{{ $news->content }}</p>
-                <p class="tracking-wide">{{ $news->content }}</p>
-                <p class="tracking-wide">{{ $news->content }}</p>
+                <p class="tracking-wide "><span class="font-extrabold">{{ $news->lokasi }} - </span>{{ $news->content }}
+                </p>
+                <p class="tracking-wide">{{ $news->content_2 }}</p>
+                <p class="tracking-wide">{{ $news->content_3 }}</p>
+                <p class="tracking-wide">{{ $news->content_4 }}</p>
+                <p class="tracking-wide">{{ $news->content_5 }}</p>
 
                 <hr class="my-6 border border-gray-400" />
                 <div class="mx-auto scale-150">
@@ -36,4 +39,6 @@
             </div>
         </article>
     </div>
+
+    <x-elements.button_back href="/news#{{ $news->slug }}" />
 </x-layout_template>
