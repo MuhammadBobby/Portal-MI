@@ -29,7 +29,7 @@
         <x-elements.section_template id="News">
 
             @foreach ($news as $item)
-                <article>
+                <article id="{{ $item->slug }}">
                     <a href="/news/{{ $item->slug }}" class="flex items-start mb-6 cursor-pointer group">
                         <div class="w-1/3 overflow-hidden">
                             <img src="/assets/images/{{ $item->image }}" alt={{ $item->title }}

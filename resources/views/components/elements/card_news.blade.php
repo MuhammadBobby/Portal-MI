@@ -3,7 +3,7 @@
 <div
     class="bg-white border border-gray-200 rounded-lg shadow  min-w-[80%] md:min-w-[30%] -z-0 hover:bg-gray-100 flex flex-col justify-between group">
     <div>
-        <a href={{ $item->slug }}>
+        <a href="/news/{{ $item->slug }}">
             <img src="/assets/images/{{ $item->image }}" alt={{ $item->title }} loading="lazy"
                 class="object-cover w-full rounded-t-lg max-h-56" />
         </a>
@@ -16,7 +16,7 @@
                     color="{{ $item->category->color }}">{{ $item->category->name }}</x-elements.badges_category>
             </div>
 
-            <a href={{ $item->slug }}>
+            <a href="/news/{{ $item->slug }}">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight">{{ $item->title }}</h5>
             </a>
             <p class="mb-3 font-normal text-gray-700 ">{{ Str::limit($item->content, 100) }}</p>
@@ -25,7 +25,7 @@
 
     <div class="p-5">
         <div class="relative mb-3 max-w-32">
-            <x-elements.button_shadow href="{{ $item->slug }}">Read more</x-elements.button_shadow>
+            <x-elements.button_shadow href="/news/{{ $item->slug }}">Read more</x-elements.button_shadow>
         </div>
     </div>
 </div>

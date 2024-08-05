@@ -15,6 +15,15 @@ class NewsController extends Controller
             'news' => News::latest()->with('author', 'category')->paginate(10),
             'categories' => Category::all(),
         ];
-        return view('pages/news', $data);
+        return view('pages/news/index', $data);
+    }
+
+    public function detail(News $news)
+    {
+        $data = [
+            'title' => $news->title,
+            'news' => $news,
+        ];
+        return view('pages/news/detail', $data);
     }
 }
