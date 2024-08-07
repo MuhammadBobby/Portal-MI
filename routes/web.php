@@ -9,3 +9,6 @@ Route::get('/', [LandingPageController::class, 'index']);
 // news
 Route::get('/news', [NewsController::class, 'index']);
 Route::get('/news/{news:slug}', [NewsController::class, 'detail']);
+
+// search news
+Route::post('/search', [NewsController::class, 'search']);
