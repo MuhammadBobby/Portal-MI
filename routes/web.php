@@ -13,3 +13,6 @@ Route::get('/news/{news:slug}', [NewsController::class, 'detail']);
 
 // search news
 Route::post('/search', [NewsController::class, 'search']);
+
+// category
+Route::get('/category', [CategoryController::class, 'index']);
