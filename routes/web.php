@@ -15,4 +15,4 @@ Route::get('/news/{news:slug}', [NewsController::class, 'detail']);
 Route::post('/search', [NewsController::class, 'search']);
 
 // category
-Route::get('/category', [CategoryController::class, 'index']);
+Route::get('/category/{categories:slug}', [CategoryController::class, 'index']);
