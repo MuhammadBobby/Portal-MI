@@ -19,4 +19,12 @@ class LandingPageController extends Controller
         ];
         return view('home', $data);
     }
+
+    public function admin()
+    {
+        $data = [
+            'title' => 'Admin Portal MI',
+        ];
+        return view('pages/admin/index', $data);
+    }
 }
