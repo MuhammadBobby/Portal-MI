@@ -1,4 +1,4 @@
- @props(['mini_title', 'href'])
+ @props(['mini_title', 'href', 'action'])
 
  <div class="head-title">
      <div class="left">
@@ -11,6 +11,13 @@
              <li>
                  <a class="active" href="{{ $href }}">{{ $mini_title }}</a>
              </li>
+
+             @if ($action != null)
+                 <li><i class='bx bx-chevron-right'></i></li>
+                 <li>
+                     <a class="active" href="{{ $href }}/{{ $action }}">{{ $action }}</a>
+                 </li>
+             @endif
          </ul>
      </div>
 

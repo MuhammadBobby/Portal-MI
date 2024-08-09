@@ -1,4 +1,4 @@
-@props(['title', 'mini_title', 'href'])
+@props(['title', 'mini_title', 'href', 'action'])
 
 
 <!DOCTYPE html>
@@ -38,7 +38,8 @@
         <!-- MAIN -->
         <main>
             {{-- header --}}
-            <x-admin.header mini_title="{{ $mini_title }}" href="{{ $href }}" />
+            <x-admin.header mini_title="{{ $mini_title }}" href="{{ $href }}"
+                action="{{ isset($action) ? $action : null }}" />
 
             {{ $slot }}
         </main>

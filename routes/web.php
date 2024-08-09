@@ -1,23 +1,22 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\PageController;
 
-Route::get('/', [LandingPageController::class, 'index']);
+Route::get('/', [PageController::class, 'index']);
+// news
+Route::get('/news', [PageController::class, 'news']);
+Route::get('/news/{news:slug}', [PageController::class, 'detail']);
+// search news
+Route::post('/search', [PageController::class, 'search']);
+// category
+Route::get('/category/{categories:slug}', [PageController::class, 'category']);
+
 
 // admin
-Route::get('/admin', [AdminController::class, 'index']);
-Route::get('/admin/news', [AdminController::class, 'adminNews']);
-
-// news
-Route::get('/news', [NewsController::class, 'index']);
-Route::get('/news/{news:slug}', [NewsController::class, 'detail']);
-
-// search news
-Route::post('/search', [NewsController::class, 'search']);
-
-// category
-Route::get('/category/{categories:slug}', [CategoryController::class, 'index']);
+Route::get('/admin', [PageController::class, 'admin']);
+// admin/news
+Route::prefix('admin')->group(function () {
+    Route::resource('news', NewsController::class);
+});

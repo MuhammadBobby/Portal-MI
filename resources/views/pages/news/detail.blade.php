@@ -40,5 +40,10 @@
         </article>
     </div>
 
-    <x-elements.button_back href="/news#{{ $news->slug }}" />
+    @if (request()->has('callbackUrl'))
+        <x-elements.button_back href="{{ request('callbackUrl') }}" />
+    @else
+        <x-elements.button_back href="/news#{{ $news->slug }}" />
+    @endif
+
 </x-layout_template>
