@@ -1,52 +1,71 @@
+<?php
+$menus = [
+    [
+        'href' => '/admin',
+        'icon' => 'bx bxs-dashboard',
+        'text' => 'Dashboard',
+        'active' => true,
+    ],
+    [
+        'href' => '/admin/news',
+        'icon' => 'bx bxs-news',
+        'text' => 'News',
+    ],
+    [
+        'href' => '/admin/categories',
+        'icon' => 'bx bxs-category',
+        'text' => 'Categories',
+    ],
+    [
+        'href' => '/admin/users',
+        'icon' => 'bx bxs-user',
+        'text' => 'Users',
+    ],
+];
+
+$secondaryMenus = [
+    [
+        'href' => '/',
+        'icon' => 'bx bxs-home',
+        'text' => 'Back to website',
+    ],
+    [
+        'href' => '#',
+        'icon' => 'bx bxs-log-out-circle',
+        'text' => 'Logout',
+        'class' => 'logout',
+    ],
+];
+?>
+
+
 <section id="sidebar">
     <a href="#" class="brand">
-        <i class='bx bxs-smile'></i>
-        <span class="text">AdminHub</span>
+        <img src="/assets/logo/logoMI.png" alt="logo MI" class="w-10">
+        <span class="text">Portal MI</span>
     </a>
     <ul class="side-menu top">
-        <li class="active">
-            <a href="#">
-                <i class='bx bxs-dashboard'></i>
-                <span class="text">Dashboard</span>
+        <?php foreach ($menus as $menu): ?>
+        <li class="<?= isset($menu['active']) && $menu['active'] ? 'active' : '' ?>">
+            <a href="<?= $menu['href'] ?>">
+                <i class='<?= $menu['icon'] ?>'></i>
+                <span class="text"><?= $menu['text'] ?></span>
             </a>
         </li>
-        <li>
-            <a href="#">
-                <i class='bx bxs-shopping-bag-alt'></i>
-                <span class="text">My Store</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bxs-doughnut-chart'></i>
-                <span class="text">Analytics</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bxs-message-dots'></i>
-                <span class="text">Message</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bxs-group'></i>
-                <span class="text">Team</span>
-            </a>
-        </li>
+        <?php endforeach; ?>
     </ul>
     <ul class="side-menu">
+        <?php foreach ($secondaryMenus as $menu): ?>
         <li>
-            <a href="#">
-                <i class='bx bxs-cog'></i>
-                <span class="text">Settings</span>
+            <a href="<?= $menu['href'] ?>" class="<?= $menu['class'] ?? '' ?>">
+                <i class='<?= $menu['icon'] ?>'></i>
+                <span class="text"><?= $menu['text'] ?></span>
             </a>
         </li>
-        <li>
-            <a href="#" class="logout">
-                <i class='bx bxs-log-out-circle'></i>
-                <span class="text">Logout</span>
-            </a>
-        </li>
+        <?php endforeach; ?>
     </ul>
 </section>
+
+
+
+<script src="/js/sidebar.js"></script>

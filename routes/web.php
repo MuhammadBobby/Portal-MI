@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CategoryController;
@@ -8,7 +9,8 @@ use App\Http\Controllers\LandingPageController;
 Route::get('/', [LandingPageController::class, 'index']);
 
 // admin
-Route::get('/admin', [LandingPageController::class, 'admin']);
+Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin/news', [AdminController::class, 'adminNews']);
 
 // news
 Route::get('/news', [NewsController::class, 'index']);

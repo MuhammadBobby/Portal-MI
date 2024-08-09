@@ -1,3 +1,6 @@
+@props(['title', 'mini_title', 'href'])
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +22,7 @@
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
-<body class="bg-gray-500">
+<body>
     {{-- preload --}}
     <x-admin.preload />
 
@@ -33,7 +36,12 @@
         <!-- NAVBAR -->
 
         <!-- MAIN -->
-        {{ $slot }}
+        <main>
+            {{-- header --}}
+            <x-admin.header mini_title="{{ $mini_title }}" href="{{ $href }}" />
+
+            {{ $slot }}
+        </main>
         <!-- MAIN -->
     </section>
     <!-- CONTENT -->
