@@ -41,7 +41,7 @@ $secondaryMenus = [
 
 <section id="sidebar">
     <a href="#" class="brand">
-        <img src="/assets/logo/logoMI.png" alt="logo MI" class="w-10">
+        <img src="/assets/logo/logoMI.png" alt="logo MI" class="w-16">
         <span class="text">Portal MI</span>
     </a>
     <ul class="side-menu top">
@@ -68,4 +68,4 @@ $secondaryMenus = [
 
 
 
-<script src="/js/sidebar.js"></script>
+{{-- <script src="/js/sidebar.js"></script> --}}

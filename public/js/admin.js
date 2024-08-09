@@ -1,23 +1,96 @@
-// const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
+// Ambil semua link di sidebar
+const allSideMenu = document.querySelectorAll("#sidebar .side-menu.top li a");
 
-// allSideMenu.forEach(item=> {
-// 	const li = item.parentElement;
+// Fungsi untuk mengatur active state berdasarkan url saat ini
+function setActiveMenu() {
+    const currentPath = window.location.pathname;
 
-// 	item.addEventListener('click', function () {
-// 		allSideMenu.forEach(i=> {
-// 			i.parentElement.classList.remove('active');
-// 		})
-// 		li.classList.add('active');
-// 	})
-// });
+    allSideMenu.forEach((item) => {
+        const li = item.parentElement;
+        const itemHref = item.getAttribute("href");
 
-// // TOGGLE SIDEBAR
-// const menuBar = document.querySelector('#content nav .bx.bx-menu');
-// const sidebar = document.getElementById('sidebar');
+        // Cek apakah href dari item saat ini sama dengan current path
+        if (itemHref === currentPath) {
+            li.classList.add("active");
+        } else {
+            li.classList.remove("active");
+        }
+    });
+}
 
-// menuBar.addEventListener('click', function () {
-// 	sidebar.classList.toggle('hide');
-// })
+// Fungsi untuk menyimpan active menu ke localStorage
+function saveActiveMenuToLocalStorage(activePath) {
+    localStorage.setItem("activeMenu", activePath);
+}
+
+// Ketika item diklik, simpan href ke localStorage
+allSideMenu.forEach((item) => {
+    const li = item.parentElement;
+
+    item.addEventListener("click", function () {
+        const itemHref = item.getAttribute("href");
+
+        allSideMenu.forEach((i) => {
+            i.parentElement.classList.remove("active");
+        });
+
+        li.classList.add("active");
+
+        // Simpan state active ke localStorage
+        saveActiveMenuToLocalStorage(itemHref);
+    });
+});
+
+// Fungsi untuk menyimpan state sidebar (collapsed/expanded) ke localStorage
+function saveSidebarStateToLocalStorage(isCollapsed) {
+    localStorage.setItem("sidebarCollapsed", isCollapsed);
+}
+
+// Fungsi untuk memuat state sidebar dari localStorage
+function loadSidebarStateFromLocalStorage() {
+    const savedState = localStorage.getItem("sidebarCollapsed");
+    if (savedState === "true") {
+        sidebar.classList.add("hide");
+    } else {
+        sidebar.classList.remove("hide");
+    }
+}
+
+// Ketika halaman dimuat ulang, cek dan set active menu dari localStorage
+document.addEventListener("DOMContentLoaded", function () {
+    const savedActiveMenu = localStorage.getItem("activeMenu");
+
+    if (savedActiveMenu) {
+        // Tetapkan active state berdasarkan localStorage
+        allSideMenu.forEach((item) => {
+            const li = item.parentElement;
+
+            if (item.getAttribute("href") === savedActiveMenu) {
+                li.classList.add("active");
+            } else {
+                li.classList.remove("active");
+            }
+        });
+    } else {
+        // Atur active state berdasarkan url saat ini jika tidak ada di localStorage
+        setActiveMenu();
+    }
+
+    // Load sidebar state from localStorage
+    loadSidebarStateFromLocalStorage();
+});
+
+// TOGGLE SIDEBAR
+const menuBar = document.querySelector("#content nav .bx.bx-menu");
+const sidebar = document.getElementById("sidebar");
+
+menuBar.addEventListener("click", function () {
+    sidebar.classList.toggle("hide");
+
+    // Simpan state sidebar (collapsed/expanded) ke localStorage
+    const isCollapsed = sidebar.classList.contains("hide");
+    saveSidebarStateToLocalStorage(isCollapsed);
+});
 
 const searchButton = document.querySelector(
     "#content nav form .form-input button"
