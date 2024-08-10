@@ -18,66 +18,26 @@ function setActiveMenu() {
     });
 }
 
-// Fungsi untuk menyimpan active menu ke localStorage
-function saveActiveMenuToLocalStorage(activePath) {
-    localStorage.setItem("activeMenu", activePath);
-}
-
-// Ketika item diklik, simpan href ke localStorage
-allSideMenu.forEach((item) => {
-    const li = item.parentElement;
-
-    item.addEventListener("click", function () {
-        const itemHref = item.getAttribute("href");
-
-        allSideMenu.forEach((i) => {
-            i.parentElement.classList.remove("active");
-        });
-
-        li.classList.add("active");
-
-        // Simpan state active ke localStorage
-        saveActiveMenuToLocalStorage(itemHref);
-    });
-});
-
-// Fungsi untuk menyimpan state sidebar (collapsed/expanded) ke localStorage
+// Fungsi untuk menyimpan collapse state ke localStorage
 function saveSidebarStateToLocalStorage(isCollapsed) {
-    localStorage.setItem("sidebarCollapsed", isCollapsed);
+    localStorage.setItem("sidebarCollapsed", isCollapsed ? "true" : "false");
 }
 
-// Fungsi untuk memuat state sidebar dari localStorage
-function loadSidebarStateFromLocalStorage() {
-    const savedState = localStorage.getItem("sidebarCollapsed");
-    if (savedState === "true") {
+// Fungsi untuk mengatur collapse state dari localStorage
+function setSidebarCollapseFromLocalStorage() {
+    const isCollapsed = localStorage.getItem("sidebarCollapsed") === "true";
+
+    if (isCollapsed) {
         sidebar.classList.add("hide");
     } else {
         sidebar.classList.remove("hide");
     }
 }
 
-// Ketika halaman dimuat ulang, cek dan set active menu dari localStorage
+// Ketika halaman dimuat ulang, set active menu dan sidebar collapse dari localStorage
 document.addEventListener("DOMContentLoaded", function () {
-    const savedActiveMenu = localStorage.getItem("activeMenu");
-
-    if (savedActiveMenu) {
-        // Tetapkan active state berdasarkan localStorage
-        allSideMenu.forEach((item) => {
-            const li = item.parentElement;
-
-            if (item.getAttribute("href") === savedActiveMenu) {
-                li.classList.add("active");
-            } else {
-                li.classList.remove("active");
-            }
-        });
-    } else {
-        // Atur active state berdasarkan url saat ini jika tidak ada di localStorage
-        setActiveMenu();
-    }
-
-    // Load sidebar state from localStorage
-    loadSidebarStateFromLocalStorage();
+    setActiveMenu();
+    setSidebarCollapseFromLocalStorage();
 });
 
 // TOGGLE SIDEBAR
@@ -92,6 +52,7 @@ menuBar.addEventListener("click", function () {
     saveSidebarStateToLocalStorage(isCollapsed);
 });
 
+// SEARCH
 const searchButton = document.querySelector(
     "#content nav form .form-input button"
 );

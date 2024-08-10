@@ -86,7 +86,7 @@
                                             aria-labelledby="{{ $item->slug }}-button">
                                             @if ($type === 'news')
                                                 <li>
-                                                    <a href="/news/{{ $item->slug }}?callbackUrl={{ urlencode(url()->full()) }}"
+                                                    <a href="/admin/news/{{ $item->slug }}?callbackUrl={{ urlencode(url()->full()) }}"
                                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
                                                 </li>
                                             @endif

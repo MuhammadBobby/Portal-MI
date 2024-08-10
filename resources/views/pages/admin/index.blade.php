@@ -43,7 +43,7 @@
                     @for ($i = 0; $i < 5; $i++)
                         <tr>
                             <td>
-                                <img src="/assets/news/{{ $news[$i]->image }}">
+                                <img src="/uploads/news/{{ $news[$i]->image }}">
                                 <p>{{ Str::limit($news[$i]->title, 20) }}</p>
                             </td>
                             <td>{{ $news[$i]->created_at->diffForHumans() }}</td>

@@ -4,7 +4,7 @@
     class="bg-white border border-gray-200 rounded-lg shadow  min-w-[80%] md:min-w-[30%] -z-0 hover:bg-gray-100 flex flex-col justify-between group">
     <div>
         <a href="/news/{{ $item->slug }}?callbackUrl={{ urlencode(url()->full()) }}" class="block overflow-hidden">
-            <img src="/assets/images/{{ $item->image }}" alt={{ $item->title }} loading="lazy"
+            <img src="/uploads/news/{{ $item->image }}" alt={{ $item->title }} loading="lazy"
                 class="object-cover w-full transition-all rounded-t-lg max-h-56 group-hover:scale-110" />
         </a>
         <div class="p-5">

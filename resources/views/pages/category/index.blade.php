@@ -16,7 +16,7 @@
             @if ($news->count() > 0)
                 <a href="/news/{{ $news[0]->slug }}">
                     <div class="relative overflow-hidden rounded-lg">
-                        <img src="/assets/images/{{ $news[0]->image }}" alt="berita"
+                        <img src="/uploads/news/{{ $news[0]->image }}" alt="berita"
                             class="object-cover w-full transition-all rounded-lg max-h-52 md:max-h-96 hover:scale-110">
                         <div
                             class="absolute z-10 p-4 mr-4 text-white bg-black bg-opacity-50 rounded-lg bottom-4 left-4">

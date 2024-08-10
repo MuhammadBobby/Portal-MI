@@ -23,7 +23,7 @@ class NewsFactory extends Factory
             'content_3' => fake()->sentence(161),
             'content_4' => fake()->sentence(130),
             'content_5' => fake()->sentence(50),
-            'lokasi' => 'POLMED',
+            'location' => 'POLMED',
             'slug' => fake()->slug,
             'image' => 'helloTech.webp',
             'category_id' => Category::factory(),  // Membuat category baru untuk setiap news

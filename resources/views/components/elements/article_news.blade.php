@@ -3,7 +3,7 @@
 <article id="{{ $item->slug }}">
     <a href="/news/{{ $item->slug }}" class="flex items-start mb-6 cursor-pointer group">
         <div class="w-1/3 overflow-hidden rounded-lg">
-            <img src="/assets/images/{{ $item->image }}" alt={{ $item->title }}
+            <img src="/uploads/news/{{ $item->image }}" alt={{ $item->title }}
                 class="object-cover w-full transition-all rounded-lg max-h-40 md:max-h-36 group-hover:scale-110">
         </div>
         <div class="w-full pl-3">

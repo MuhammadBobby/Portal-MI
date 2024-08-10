@@ -16,7 +16,7 @@ Route::get('/category/{categories:slug}', [PageController::class, 'category']);
 
 // admin
 Route::get('/admin', [PageController::class, 'admin']);
-// admin/news
+// admin/news (resurceful)
 Route::prefix('admin')->group(function () {
     Route::resource('news', NewsController::class);
 });

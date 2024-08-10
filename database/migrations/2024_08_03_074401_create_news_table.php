@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('content_3');
             $table->text('content_4')->nullable();
             $table->text('content_5')->nullable();
-            $table->text('lokasi');
+            $table->text('location');
             $table->foreignId('author_id')->constrained(
                 table: 'users',
                 indexName: 'posts_author_id'

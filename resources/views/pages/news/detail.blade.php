@@ -19,12 +19,13 @@
                     class="text-xs font-light md:text-sm">{{ Carbon::parse($news->created_at)->translatedFormat('l, j F Y H:i') . ' WIB' }}</span>
             </header>
 
-            <img src="/assets/images/{{ $news->image }}" alt="{{ $news->title }}"
+            <img src="/uploads/news/{{ $news->image }}" alt="{{ $news->title }}"
                 class="object-cover w-full max-h-48 md:max-h-72">
 
             <div
                 class="flex flex-col gap-3 mx-5 my-5 text-sm font-semibold text-justify md:text-base md:tracking-normal md:mx-8 md:leading-5 md:font-normal">
-                <p class="tracking-wide "><span class="font-extrabold">{{ $news->lokasi }} - </span>{{ $news->content }}
+                <p class="tracking-wide "><span class="font-extrabold">{{ $news->location }} -
+                    </span>{{ $news->content }}
                 </p>
                 <p class="tracking-wide">{{ $news->content_2 }}</p>
                 <p class="tracking-wide">{{ $news->content_3 }}</p>
