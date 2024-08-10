@@ -31,7 +31,6 @@ class NewsController extends Controller
     }
 
 
-
     public function create()
     {
         $data = [
@@ -45,6 +44,22 @@ class NewsController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|string|unique:news,title|min:3',
+            'image' => 'image|mimes:jpeg,png,jpg,svg,webp|max:2048',
+            'location' => 'required|string|min:3',
+            'category_id' => 'required|exists:categories,id',
+            'author_id' => 'required|exists:users,id',
+            'content' => 'required|string|min:10',
+            'content_2' => 'required|string|min:10',
+            'content_3' => 'required|string|min:10',
+        ], [
+            'category_id.exists' => 'Category not found',
+            'author_id.exists' => 'Author not found',
+            'category_id.required' => 'Category is required',
+            'author_id.required' => 'Author is required',
+        ]);
+
         // Membuat slug dari title
         $slug = Str::slug($request->title, '-');
 
@@ -63,8 +78,8 @@ class NewsController extends Controller
             'slug' => $slug,
             'image' => $imageName,
             'location' => $request->location,
-            'category_id' => $request->category_id ?? '1',
-            'author_id' => $request->author_id ?? '1',
+            'category_id' => $request->category_id,
+            'author_id' => $request->author_id,
             'top' => $request->top ?? 'no',
             'content' => $request->content,
             'content_2' => $request->content_2,
@@ -76,5 +91,17 @@ class NewsController extends Controller
         ]);
 
         return redirect()->route('news.index')->with('success', 'News created successfully.');
+    }
+
+
+    public function edit(News $news)
+    {
+        $data = [
+            'title' => 'Edit News | Admin Portal MI',
+            'news' => $news,
+            'categories' => Category::all(),
+            'authors' => User::all(),
+        ];
+        return view('pages/admin/news/edit', $data);
     }
 }
