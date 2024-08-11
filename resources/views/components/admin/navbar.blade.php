@@ -10,6 +10,6 @@
     <input type="checkbox" id="switch-mode" class="hidden">
     <label for="switch-mode" class="switch-mode"></label>
     <a href="/profile" class="profile">
-        <img src="/uploads/news/helloTech.webp">
+        <img src="/assets/images/helloTech.webp">
     </a>
 </nav>

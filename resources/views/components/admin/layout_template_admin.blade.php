@@ -48,7 +48,6 @@
 
 
     <script src="/js/admin.js"></script>
-
     {{-- script success --}}
     @if (session('success'))
         <script>
@@ -60,9 +59,10 @@
             });
         </script>
     @endif
+
     {{-- script confirm delete --}}
     <script>
-        document.getElementById('deleteButton').addEventListener('click', function(event) {
+        function deleteConfirm(event) {
             event.preventDefault(); // Mencegah form dikirimkan langsung
 
             Swal.fire({
@@ -79,8 +79,9 @@
                     document.getElementById('deleteForm').submit();
                 }
             });
-        });
+        }
     </script>
+
 </body>
 
 </html>

@@ -79,6 +79,7 @@
                         <option value="">Select category</option>
 
                         @foreach ($categories as $category)
+                            {{-- cek apakah values ada atau tidak --}}
                             @if (isset($values->category_id))
                                 <option value="{{ $category->id }}"
                                     {{ old('category_id', $values->category_id) == $category->id ? 'selected' : '' }}>
@@ -107,7 +108,7 @@
                         @foreach ($authors as $author)
                             @if (isset($values->author_id))
                                 <option value="{{ $author->id }}"
-                                    {{ old('author_id', isset($values->author_id)) == $author->id ? 'selected' : '' }}>
+                                    {{ old('author_id', $values->author_id) == $author->id ? 'selected' : '' }}>
                                     {{ $author->name }}
                                 </option>
                             @else

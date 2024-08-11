@@ -83,12 +83,10 @@
                                         class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 ">
                                         <ul class="py-1 text-sm text-gray-700"
                                             aria-labelledby="{{ $item->slug }}-button">
-                                            @if ($type === 'news')
-                                                <li>
-                                                    <a href="/admin/news/{{ $item->slug }}?callbackUrl={{ urlencode(url()->full()) }}"
-                                                        class="block px-4 py-2 hover:bg-gray-100">Show</a>
-                                                </li>
-                                            @endif
+                                            <li>
+                                                <a href="/admin/news/{{ $item->slug }}?callbackUrl={{ urlencode(url()->full()) }}"
+                                                    class="block px-4 py-2 hover:bg-gray-100">Show</a>
+                                            </li>
                                             <li>
                                                 <a href="/admin/news/{{ $item->slug }}/edit"
                                                     class="block px-4 py-2 hover:bg-gray-100">Edit</a>
@@ -100,8 +98,8 @@
                                                 class="flex items-center justify-center w-full hover:bg-gray-100">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" id="deleteButton"
-                                                    class="block px-4 py-2 text-sm text-gray-700 ">Delete</button>
+                                                <button type="submit" class="block px-4 py-2 text-sm text-gray-700"
+                                                    onclick="deleteConfirm(event)">Delete</button>
                                             </form>
                                         </div>
                                     </div>
