@@ -1,7 +1,7 @@
 @php
     use Carbon\Carbon;
 @endphp
-@props(['data', 'field', 'type'])
+@props(['data', 'field'])
 
 <section class="sm:p-5 bg-['#eee']">
     <div class="mx-0 lg:mx-auto lg:px-4 max-w-screen-2xl ">
@@ -28,7 +28,7 @@
                 </div>
                 <div
                     class="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 md:w-auto md:flex-row md:space-y-0 md:items-center md:space-x-3">
-                    <a href="/admin/{{ $type }}/create"
+                    <a href="/admin/news/create"
                         class="flex items-center justify-center px-4 py-2 text-sm font-medium text-white rounded-lg bg-primary hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                         <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -109,10 +109,8 @@
                     </tbody>
                 </table>
             </div>
-            <nav class="flex flex-col items-center justify-center p-4 space-y-3 md:flex-row md:items-center md:space-y-0"
-                aria-label="Table navigation">
-                {{ $data->links() }}
-            </nav>
+
+            {{ $data->links() }}
         </div>
     </div>
 </section>

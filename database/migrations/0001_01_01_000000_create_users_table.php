@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('kelas')->nullable(); // Kolom kelas bisa NULL
-            $table->string('angkatan')->nullable(); // Kolom angkatan bisa NULL
+            $table->string('class')->nullable();
+            $table->string('year_of_entry')->nullable();
+            $table->enum('role', ['admin', 'member'])->default('member');
             $table->rememberToken();
             $table->timestamps();
         });
