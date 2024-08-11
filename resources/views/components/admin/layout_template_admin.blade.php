@@ -59,6 +59,17 @@
             });
         </script>
     @endif
+    {{-- script error --}}
+    @if (session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: '{{ session('error') }}',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @endif
 
     {{-- script confirm delete --}}
     <script>
@@ -75,8 +86,11 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Jika konfirmasi diterima, kirimkan form
-                    document.getElementById('deleteForm').submit();
+                    // Temukan form terdekat yang berasosiasi dengan tombol yang diklik
+                    const form = event.target.closest('form');
+                    if (form) {
+                        form.submit(); // Kirim form tersebut
+                    }
                 }
             });
         }

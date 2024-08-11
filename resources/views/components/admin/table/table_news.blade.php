@@ -93,9 +93,8 @@
                                             </li>
                                         </ul>
                                         <div class="py-1">
-                                            <form id="deleteForm" action="/admin/news/{{ $item->slug }}"
-                                                method="POST"
-                                                class="flex items-center justify-center w-full hover:bg-gray-100">
+                                            <form action="/admin/news/{{ $item->slug }}" method="POST"
+                                                class="flex items-center justify-center w-full hover:bg-gray-100 deleteForm">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="block px-4 py-2 text-sm text-gray-700"
