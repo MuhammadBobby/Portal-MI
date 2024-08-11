@@ -20,12 +20,11 @@
         rel="stylesheet">
     {{-- boxicons --}}
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    {{-- sweetalert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
-    {{-- preload --}}
-    <x-admin.preload />
-
     {{-- sidebar --}}
     <x-admin.sidebar />
 
@@ -49,6 +48,39 @@
 
 
     <script src="/js/admin.js"></script>
+
+    {{-- script success --}}
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @endif
+    {{-- script confirm delete --}}
+    <script>
+        document.getElementById('deleteButton').addEventListener('click', function(event) {
+            event.preventDefault(); // Mencegah form dikirimkan langsung
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You won\'t be able to revert this!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Jika konfirmasi diterima, kirimkan form
+                    document.getElementById('deleteForm').submit();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

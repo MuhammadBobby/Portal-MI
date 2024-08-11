@@ -66,7 +66,7 @@ class NewsController extends Controller
         // Memproses gambar jika ada
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = $slug . '.' . $image->getClientOriginalExtension();
+            $imageName = $slug . '-' . time() . '.' . $request->image->extension();
             $image->move(public_path('uploads/news'), $imageName);
         } else {
             $imageName = null;
@@ -103,5 +103,77 @@ class NewsController extends Controller
             'authors' => User::all(),
         ];
         return view('pages/admin/news/edit', $data);
+    }
+
+
+    public function update(Request $request, News $news)
+    {
+        $request->validate([
+            'title' => 'required|string|unique:news,title,' . $news->slug . ',slug|min:3',
+            'image' => 'image|mimes:jpeg,png,jpg,svg,webp|max:2048',
+            'location' => 'required|string|min:3',
+            'category_id' => 'required|exists:categories,id',
+            'author_id' => 'required|exists:users,id',
+            'content' => 'required|string|min:10',
+            'content_2' => 'required|string|min:10',
+            'content_3' => 'required|string|min:10',
+        ], [
+            'category_id.exists' => 'Category not found',
+            'author_id.exists' => 'Author not found',
+            'category_id.required' => 'Category is required',
+            'author_id.required' => 'Author is required',
+        ]);
+
+        // Membuat slug dari title
+        $slug = Str::slug($request->title, '-');
+
+        // Periksa apakah ada file image yang baru di-upload
+        if ($request->hasFile('image')) {
+            // Generate nama unik untuk file baru
+            $newImageName = $news->slug . '-' . time() . '.' . $request->image->extension();
+
+            // Hapus image lama jika ada
+            if ($news->image && file_exists(public_path('uploads/news/' . $news->image))) {
+                unlink(public_path('uploads/news/' . $news->image));
+            }
+
+            // Upload image baru
+            $request->image->move(public_path('uploads/news'), $newImageName);
+            // Update nama image di database
+            $imageName = $newImageName;
+        } else {
+            $imageName = $news->image;
+        }
+
+        News::where('slug', $news->slug)->update([
+            'title' => $request->title,
+            'slug' => $slug,
+            'image' => $imageName,
+            'location' => $request->location,
+            'category_id' => $request->category_id,
+            'author_id' => $request->author_id,
+            'top' => $request->top ?? 'no',
+            'content' => $request->content,
+            'content_2' => $request->content_2,
+            'content_3' => $request->content_3,
+            'content_4' => $request->content_4 ?? null,
+            'content_5' => $request->content_5 ?? null,
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+
+        return redirect()->route('news.index')->with('success', 'News updated successfully.');
+    }
+
+
+    public function destroy(News $news)
+    {
+        // Hapus image lama jika ada
+        $image = public_path('uploads/news/' . $news->image);
+        if (file_exists($image)) {
+            unlink($image);
+        }
+
+        News::destroy($news->id);
+        return redirect()->route('news.index')->with('success', 'News deleted successfully.');
     }
 }

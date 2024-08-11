@@ -2,7 +2,8 @@
 
 <section class="bg-white rounded-lg shadow-xl bg-opacity-70 backdrop-blur-sm">
     <div class="max-w-2xl px-4 py-8 mx-auto">
-        <h2 class="mb-4 text-xl font-bold text-gray-900">Add a news to Portal MI</h2>
+        <h2 class="mb-4 text-xl font-bold text-gray-900">{{ $method == 'POST' ? 'Add a' : 'Update ' }} news to Portal MI
+        </h2>
         <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
             @csrf
             @if ($method == 'PATCH')
@@ -29,12 +30,12 @@
                         <input type="file" name="image" id="image"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block px-2.5 w-full"
                             value="{{ $values->image ?? old('image') }}" placeholder="Image News..." accept="image/*"
-                            required="">
+                            {{ $method == 'POST' ? 'required' : '' }}>
                     </div>
                     @error('image')
                         <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
                     @enderror
-                    @if ($errors->any())
+                    @if ($errors->any() && $method == 'POST')
                         <div class="mt-2 text-sm text-red-500">Please re-upload the image</div>
                     @endif
                 </div>
@@ -75,20 +76,20 @@
                     <label for="category_id" class="block mb-2 text-sm font-medium text-gray-900 ">Category</label>
                     <select id="category_id" name="category_id"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5">
-                        <option value="{{ isset($values->category_id) ?? '' }}"
-                            {{ isset($values->category_id) ? 'selected' : '' }}>
-                            {{ isset($values->category_id) ? $values->category->name : 'Select category' }}</option>
+                        <option value="">Select category</option>
 
                         @foreach ($categories as $category)
-                            {{-- melewatkan apabila category di bawaan --}}
-                            @if (isset($values->category_id) && $values->category_id == $category->id)
-                                @continue
+                            @if (isset($values->category_id))
+                                <option value="{{ $category->id }}"
+                                    {{ old('category_id', $values->category_id) == $category->id ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
+                            @else
+                                <option value="{{ $category->id }}"
+                                    {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
                             @endif
-
-                            <option value="{{ $category->id }}"
-                                {{ old('category_id') == $category->id ? 'selected' : '' }}>
-                                {{ $category->name }}
-                            </option>
                         @endforeach
                     </select>
                     @error('category_id')
@@ -101,20 +102,20 @@
                     <label for="author_id" class="block mb-2 text-sm font-medium text-gray-900 ">Author</label>
                     <select id="author_id" name="author_id"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5">
-                        <option value="{{ isset($values->author_id) ?? '' }}"
-                            {{ isset($values->author_id) ? 'selected' : '' }}>
-                            {{ isset($values->author_id) ? $values->author->name : 'Select category' }}</option>
+                        <option value="">Select category</option>
 
                         @foreach ($authors as $author)
-                            {{-- melewatkan apabila author bawaan --}}
-                            @if (isset($values->author_id) && $values->author_id == $author->id)
-                                @continue
+                            @if (isset($values->author_id))
+                                <option value="{{ $author->id }}"
+                                    {{ old('author_id', isset($values->author_id)) == $author->id ? 'selected' : '' }}>
+                                    {{ $author->name }}
+                                </option>
+                            @else
+                                <option value="{{ $author->id }}"
+                                    {{ old('author_id') == $author->id ? 'selected' : '' }}>
+                                    {{ $author->name }}
+                                </option>
                             @endif
-
-                            <option value="{{ $author->id }}"
-                                {{ old('author_id') == $author->id ? 'selected' : '' }}>
-                                {{ $author->name }}
-                            </option>
                         @endforeach
                     </select>
                     @error('author_id')
@@ -130,15 +131,19 @@
                             <label for="top">Yes</label>
                             <input type="radio" name="top" id="top"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-primary focus:border-primary block p-2.5"
-                                value="yes" {{ isset($values->top) == 'yes' ? 'checked' : '' }}
-                                {{ old('top') == 'yes' ? 'checked' : '' }}>
+                                value="yes"
+                                @if (isset($values->top)) {{ old('top', $values->top) == 'yes' ? 'checked' : '' }}
+                                @else
+                                    {{ old('top') == 'yes' ? 'checked' : '' }} @endif>
                         </div>
                         <div>
                             <label for="top">No</label>
                             <input type="radio" name="top" id="top"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-primary focus:border-primary block p-2.5"
-                                value="no" {{ isset($values->top) == 'no' ? 'checked' : '' }}
-                                {{ old('top') == 'no' ? 'checked' : '' }}>
+                                value="no"
+                                @if (isset($values->top)) {{ old('top', $values->top) == 'no' ? 'checked' : '' }}
+                                @else
+                                    {{ old('top') == 'no' ? 'checked' : '' }} @endif>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&family=Urbanist:wght@400;500;600;700&display=swap");
 
+/* mengatur z-index swalalert */
+.swal2-container {
+    z-index: 9999 !important;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -53,7 +58,7 @@ body {
     width: 280px;
     height: 100%;
     background: var(--light);
-    z-index: 2000;
+    z-index: 999;
     font-family: var(--Urbanist);
     transition: 0.3s ease;
     overflow-x: hidden;
@@ -178,7 +183,7 @@ body {
     position: sticky;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 99;
 }
 #content nav::before {
     content: "";

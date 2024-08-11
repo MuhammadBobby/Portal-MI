@@ -87,12 +87,30 @@ window.addEventListener("resize", function () {
     }
 });
 
+// SWITCH MODE
 const switchMode = document.getElementById("switch-mode");
+
+// Fungsi untuk mengatur mode berdasarkan nilai dari localStorage
+function setModeFromLocalStorage() {
+    const isDarkMode = localStorage.getItem("darkMode") === "true";
+    if (isDarkMode) {
+        document.body.classList.add("dark");
+        switchMode.checked = true;
+    } else {
+        document.body.classList.remove("dark");
+        switchMode.checked = false;
+    }
+}
+
+// Atur mode saat halaman dimuat
+document.addEventListener("DOMContentLoaded", setModeFromLocalStorage);
 
 switchMode.addEventListener("change", function () {
     if (this.checked) {
         document.body.classList.add("dark");
+        localStorage.setItem("darkMode", "true");
     } else {
         document.body.classList.remove("dark");
+        localStorage.setItem("darkMode", "false");
     }
 });

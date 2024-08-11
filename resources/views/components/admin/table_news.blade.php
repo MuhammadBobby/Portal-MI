@@ -59,12 +59,11 @@
                             <tr class="leading-relaxed text-center border-b">
                                 <td>{{ $no++ }}</td>
                                 <td scope="row"
-                                    class="px-4 py-3 font-medium text-left text-gray-900 whitespace-nowrap">
+                                    class="px-4 py-3 font-medium text-left text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ Str::limit($item->title, 40) }}</td>
                                 <td class="px-4 py-3">{{ $item->author->name }}</td>
-                                <td class="px-4 py-3">
-                                    <x-elements.badges_category
-                                        color="{{ $item->category->color }}">{{ $item->category->name }}</x-elements.badges_category>
+                                <td class="px-4 py-3 text-[{{ $item->category->color }}] font-semibold">
+                                    {{ $item->category->name }}
                                 </td>
                                 <td class="px-4 py-3">
                                     {{ Carbon::parse($item->created_at)->translatedFormat('l, j F Y H:i') . ' WIB' }}
@@ -87,17 +86,23 @@
                                             @if ($type === 'news')
                                                 <li>
                                                     <a href="/admin/news/{{ $item->slug }}?callbackUrl={{ urlencode(url()->full()) }}"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
+                                                        class="block px-4 py-2 hover:bg-gray-100">Show</a>
                                                 </li>
                                             @endif
                                             <li>
                                                 <a href="/admin/news/{{ $item->slug }}/edit"
-                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                                                    class="block px-4 py-2 hover:bg-gray-100">Edit</a>
                                             </li>
                                         </ul>
                                         <div class="py-1">
-                                            <a href=""
-                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                                            <form id="deleteForm" action="/admin/news/{{ $item->slug }}"
+                                                method="POST"
+                                                class="flex items-center justify-center w-full hover:bg-gray-100">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" id="deleteButton"
+                                                    class="block px-4 py-2 text-sm text-gray-700 ">Delete</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </td>
