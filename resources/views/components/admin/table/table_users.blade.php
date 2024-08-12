@@ -3,7 +3,7 @@
 <section class="sm:p-5 bg-['#eee']">
     <div class="mx-0 lg:mx-auto lg:px-4 max-w-screen-2xl ">
         <!-- Start coding here -->
-        <div class="relative overflow-hidden">
+        <div class="relative overflow-visible">
             <div class="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
                 <div class="w-full md:w-1/2">
                     <form class="flex items-center">
@@ -44,8 +44,11 @@
                             <tr class="leading-relaxed text-center border-b">
                                 <td>{{ $no++ }}</td>
                                 <td scope="row"
-                                    class="px-4 py-3 font-medium text-left text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ Str::limit($item->name, 40) }}</td>
+                                    class="flex items-center gap-1 px-4 py-3 font-medium text-left text-gray-900 whitespace-nowrap dark:text-white">
+                                    <img src="/uploads/users/{{ $item->image }}" alt="{{ $item->name }}"
+                                        class="w-8 h-8 rounded-full">
+                                    <span>{{ Str::limit($item->name, 40) }}</span>
+                                </td>
                                 <td class="px-4 py-3">{{ $item->email }}</td>
                                 <td class="px-4 py-3 font-semibold">
                                     {{ $item->class }}
@@ -57,7 +60,7 @@
                                     {{ $item->role }}
                                 </td>
                                 <td class="flex items-center justify-end px-4 py-3">
-                                    <button id="{{ $item->email }}-button" data-dropdown-toggle="{{ $item->email }}"
+                                    <button id="{{ $item->id }}-button" data-dropdown-toggle="{{ $item->id }}"
                                         class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none"
                                         type="button">
                                         <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
@@ -67,10 +70,15 @@
                                         </svg>
                                     </button>
 
-                                    <div id="{{ $item->email }}"
+                                    <div id="{{ $item->id }}"
                                         class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 ">
                                         <ul class="py-1 text-sm text-gray-700"
-                                            aria-labelledby="{{ $item->email }}-button">
+                                            aria-labelledby="{{ $item->id }}-button">
+                                            <li>
+                                                <button class="block w-full px-4 py-2 text-center hover:bg-gray-100"
+                                                    onclick="showTokenPopup('{{ $item->remember_token }}')">Remember
+                                                    Token</button>
+                                            </li>
                                             <li>
                                                 <a href="/admin/users/{{ $item->id }}/edit"
                                                     class="block px-4 py-2 hover:bg-gray-100">Edit</a>

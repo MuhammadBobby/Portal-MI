@@ -15,7 +15,7 @@
              @if ($action != null)
                  <li><i class='bx bx-chevron-right'></i></li>
                  <li>
-                     <a class="active" href="{{ $href }}/{{ $action }}">{{ $action }}</a>
+                     <p class="active text-primary">{{ $action }}</p>
                  </li>
              @endif
          </ul>

@@ -17,6 +17,37 @@ class UsersController extends Controller
         return view('pages/admin/users/index', $data);
     }
 
+
+    public function edit(User $user)
+    {
+        $data = [
+            'title' => 'Edit User | Admin Portal MI',
+            'user' => $user,
+        ];
+        return view('pages/admin/users/edit', $data);
+    }
+
+
+    public function update(Request $request, User $user)
+    {
+        $request->validate([
+            'name' => 'required|string|min:3',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'role' => 'required|string',
+        ]);
+
+
+
+        User::where('id', $user->id)->update([
+            'name' => $request->name,
+            'role' => $request->role,
+            'email' => $request->email,
+            'updated_at' => now(),
+        ]);
+        return redirect()->route('users.index')->with('success', 'User updated successfully.');
+    }
+
+
     public function destroy(User $user)
     {
         // Cek apakah user ini terdaftar sebagai author di table news

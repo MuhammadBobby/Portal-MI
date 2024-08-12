@@ -4,4 +4,5 @@ Photo by <a href="https://unsplash.com/@alexbemore?utm_content=creditCopyText&ut
 
   tanmbahan
 
-  news : lokasi, tambah paragraf minimal 3
+ 1. user : image, nim
+ 2. 
