@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', [PageController::class, 'index']);
 // news
@@ -24,4 +25,8 @@ Route::prefix('admin')->group(function () {
 // admin/users (resurceful)
 Route::prefix('admin')->group(function () {
     Route::resource('users', UsersController::class);
+});
+// admin/categories (resurceful)
+Route::prefix('admin')->group(function () {
+    Route::resource('categories', CategoryController::class);
 });
