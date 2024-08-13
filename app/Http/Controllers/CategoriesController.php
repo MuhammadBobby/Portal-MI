@@ -6,7 +6,7 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class CategoriesController extends Controller
 {
     public function index()
     {
@@ -22,15 +22,17 @@ class CategoryController extends Controller
     public function create()
     {
         $data = [
-            'title' => 'Create Categiry | Admin Portal MI',
+            'title' => 'Create Category | Admin Portal MI',
         ];
         return view('pages/admin/categories/create', $data);
     }
 
+
+
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|unique:category,name|min:1',
+            'name' => 'required|string|unique:categories,name|min:1',
             'image' => 'image|mimes:jpeg,png,jpg,svg,webp|max:2048',
             'color' => 'required|string',
             'description' => 'required|string|min:3'
@@ -48,18 +50,15 @@ class CategoryController extends Controller
             $imageName = null;
         }
 
-
-        Category::insert([
+        Category::create([
             'name' => $request->name,
             'slug' => $slug,
-            'image' => $imageName,
+            'logo' => $imageName,
             'color' => $request->color,
             'description' => $request->description,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
-        return redirect()->route('category.index')->with('success', 'Category created successfully.');
+        return redirect('/admin/categories')->with('success', 'Category created successfully.');
     }
 
     public function edit(Category $category)

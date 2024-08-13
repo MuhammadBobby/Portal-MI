@@ -73,7 +73,7 @@ class NewsController extends Controller
         }
 
 
-        News::insert([
+        News::create([
             'title' => $request->title,
             'slug' => $slug,
             'image' => $imageName,
@@ -86,8 +86,6 @@ class NewsController extends Controller
             'content_3' => $request->content_3,
             'content_4' => $request->content_4 ?? null,
             'content_5' => $request->content_5 ?? null,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         return redirect()->route('news.index')->with('success', 'News created successfully.');
@@ -158,7 +156,6 @@ class NewsController extends Controller
             'content_3' => $request->content_3,
             'content_4' => $request->content_4 ?? null,
             'content_5' => $request->content_5 ?? null,
-            'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         return redirect()->route('news.index')->with('success', 'News updated successfully.');

@@ -42,7 +42,6 @@ class UsersController extends Controller
             'name' => $request->name,
             'role' => $request->role,
             'email' => $request->email,
-            'updated_at' => now(),
         ]);
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }

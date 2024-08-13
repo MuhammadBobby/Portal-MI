@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UsersController;
-use App\Http\Controllers\CategoryController;
 
 Route::get('/', [PageController::class, 'index'])->name('home');
 // news
@@ -29,7 +29,7 @@ Route::prefix('admin')->group(function () {
 });
 // admin/categories (resurceful)
 Route::prefix('admin')->group(function () {
-    Route::resource('categories', CategoryController::class);
+    Route::resource('categories', CategoriesController::class);
 });
 
 
