@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 
 class AuthController extends Controller
@@ -13,7 +16,7 @@ class AuthController extends Controller
         $data = [
             'title' => 'Login | Admin Portal MI',
         ];
-        return view('auth.login', $data);
+        return view('auth/login', $data);
     }
 
     public function login(Request $request)
@@ -42,6 +45,39 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
+        return redirect()->route('home');
+    }
+
+
+    public function showRegistrationForm()
+    {
+        $data = [
+            'title' => 'Register | Admin Portal MI',
+        ];
+        return view('auth/register', $data);
+    }
+
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'nim' => 'required|numeric|unique:users|min:8',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|confirmed|min:8',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'nim' => $request->nim,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'member',
+            'remember_token' => Str::random(10),
+        ]);
+
+        // otomatis login
+        Auth::login($user);
         return redirect()->route('home');
     }
 }

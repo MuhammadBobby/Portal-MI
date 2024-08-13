@@ -6,8 +6,8 @@
                 <a href="/">
                     <img src="/assets/logo/logoMI.png" alt="Logo" class="w-12 h-12 mx-auto mb-2"></a>
                 <h2 class="text-2xl font-bold text-gray-800">Welcome back</h2>
-                <p class="text-gray-600">Sign in to your account. Don't have an account? <a href="#"
-                        class="text-primary hover:underline">Sign up.</a></p>
+                <p class="text-gray-600">Sign in to your account. Don't have an account? <a
+                        href="{{ route('register') }}" class="text-primary hover:underline">Sign up.</a></p>
             </div>
 
             <form action="{{ route('login') }}" method="POST" class="space-y-6">

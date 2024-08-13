@@ -27,6 +27,7 @@ class User extends Authenticatable
         'class',
         'year_of_entry',
         'role',
+        'remember_token',
     ];
 
     /**

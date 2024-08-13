@@ -74,11 +74,11 @@
                                         class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 ">
                                         <ul class="py-1 text-sm text-gray-700"
                                             aria-labelledby="{{ $item->id }}-button">
-                                            <li>
+                                            {{-- <li>
                                                 <button class="block w-full px-4 py-2 text-center hover:bg-gray-100"
                                                     onclick="showTokenPopup('{{ $item->remember_token }}')">Remember
                                                     Token</button>
-                                            </li>
+                                            </li> --}}
                                             <li>
                                                 <a href="/admin/users/{{ $item->id }}/edit"
                                                     class="block px-4 py-2 hover:bg-gray-100">Edit</a>
