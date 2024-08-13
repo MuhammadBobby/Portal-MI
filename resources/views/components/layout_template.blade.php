@@ -14,6 +14,8 @@
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
      <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
          rel="stylesheet">
+     {{-- sweetalert2 --}}
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  </head>
 
  <body class="overflow-x-hidden bg-orange-50 font-urbanist">

@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CategoryController;
 
-Route::get('/', [PageController::class, 'index']);
+Route::get('/', [PageController::class, 'index'])->name('home');
 // news
 Route::get('/news', [PageController::class, 'news']);
 Route::get('/news/{news:slug}', [PageController::class, 'detail']);
@@ -30,3 +31,10 @@ Route::prefix('admin')->group(function () {
 Route::prefix('admin')->group(function () {
     Route::resource('categories', CategoryController::class);
 });
+
+
+
+// auth
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

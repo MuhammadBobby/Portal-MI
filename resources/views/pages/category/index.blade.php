@@ -6,7 +6,7 @@
                         class="text-[{{ $category->color }}]">
                         {{ $category->name }}</span></h1>
                 <p class=" font-light md:mt-2 text-[#004080] text-md md:text-base">
-                    {{ $news->count() }} berita terbaru dengan kategori
+                    {{ $news->count() ?? 0 }} berita terbaru dengan kategori
                     {{ $category->name }}
                 </p>
                 <hr class="my-6 border-gray-300 sm:mx-auto lg:my-3" />
