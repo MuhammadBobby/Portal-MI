@@ -46,15 +46,15 @@
                     <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                     <input type="password" name="password" id="password" placeholder="********" required
                         class="block w-full mt-1 text-gray-900 placeholder-gray-500 bg-white border border-gray-300 rounded-md focus:border-primary focus:ring-primary sm:text-sm">
-                    @error('password')
-                        <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
-                    @enderror
 
                     {{-- lihat password --}}
                     <button type="button" id="togglePassword" class="absolute right-0 top-1/2">
                         👁️
                     </button>
                 </div>
+                @error('password')
+                    <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
+                @enderror
 
                 <div class="relative">
                     <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Password

@@ -10,7 +10,10 @@ class ForgotPasswordController extends Controller
 {
     public function showForgotPasswordForm()
     {
-        return view('auth.forgot-password');
+        $data = [
+            'title' => 'Forgot Password',
+        ];
+        return view('auth.forgot-password', $data);
     }
 
 
@@ -21,7 +24,7 @@ class ForgotPasswordController extends Controller
         $response = Password::sendResetLink($request->only('email'));
 
         return $response == Password::RESET_LINK_SENT
-            ? Redirect::route('password.request')->with('status', __('We have emailed your password reset link!'))
+            ? Redirect::route('password.request')->with('success', __('We have emailed your password reset link!'))
             : Redirect::route('password.request')->withErrors(['email' => __($response)]);
     }
 }

@@ -10,8 +10,13 @@ class ResetPasswordController extends Controller
 {
     public function showResetForm($token)
     {
-        return view('auth.reset-password', ['token' => $token]);
+        $data = [
+            'title' => 'Reset Password | Portal MI',
+            'token' => $token
+        ];
+        return view('auth.reset-password', $data);
     }
+
 
     public function reset(Request $request)
     {
@@ -30,7 +35,7 @@ class ResetPasswordController extends Controller
         );
 
         return $response == Password::PASSWORD_RESET
-            ? Redirect::route('login')->with('status', __('Your password has been reset!'))
+            ? Redirect::route('login')->with('success', __('Your password has been reset! Please login with your new password.'))
             : Redirect::route('password.reset', ['token' => $request->token])->withErrors(['email' => __($response)]);
     }
 }
