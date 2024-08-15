@@ -32,13 +32,13 @@
 
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
-                        <input id="remember_me" name="remember" type="checkbox"
+                        <input id="remember" name="remember" type="checkbox"
                             class="w-4 h-4 bg-white border-gray-300 rounded text-primary focus:ring-primary">
-                        <label for="remember_me" class="block ml-2 text-sm text-gray-600">Remember me</label>
+                        <label for="remember" class="block ml-2 text-sm text-gray-600">Remember me</label>
                     </div>
 
                     <div class="text-sm">
-                        <a href="#" class="font-medium text-primary hover:underline">Forgot password?</a>
+                        <a href="/forgot-password" class="font-medium text-primary hover:underline">Forgot password?</a>
                     </div>
                 </div>
 

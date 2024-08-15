@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Redirect;
 
 
 class AuthController extends Controller
@@ -19,6 +20,8 @@ class AuthController extends Controller
         return view('auth/login', $data);
     }
 
+
+
     public function login(Request $request)
     {
         $request->validate([
@@ -26,16 +29,17 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
+        $credentials = $request->only('email', 'password');
+        $remember = $request->has('remember');
+
         // cek kredential
-        if (auth()->attempt($credentials = $request->only('email', 'password'))) {
+        if (auth()->attempt($credentials, $remember)) {
             $request->session()->regenerate();
             return redirect()->route('home');
         }
 
         // Jika gagal, kembalikan ke halaman login dengan error
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+        return Redirect::back()->with('error', 'Invalid email or password! Please input correct email and password.');
     }
 
 

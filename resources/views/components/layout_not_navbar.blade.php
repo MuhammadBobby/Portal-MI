@@ -22,6 +22,28 @@
      {{ $slot }}
 
      <script src="/js/script.js"></script>
+     {{-- script success --}}
+     @if (session('success'))
+         <script>
+             Swal.fire({
+                 icon: 'success',
+                 title: 'Success!',
+                 text: '{{ session('success') }}',
+                 confirmButtonText: 'OK'
+             });
+         </script>
+     @endif
+     {{-- script error --}}
+     @if (session('error'))
+         <script>
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Error!',
+                 text: '{{ session('error') }}',
+                 confirmButtonText: 'OK'
+             });
+         </script>
+     @endif
  </body>
 
  </html>

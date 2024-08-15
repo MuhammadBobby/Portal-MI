@@ -2,17 +2,32 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ForgotPasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UsersController;
+use Illuminate\Support\Facades\Auth;
+
+Auth::routes(['verify' => true]);
+// auth
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+
 
 Route::get('/', [PageController::class, 'index'])->name('home');
 // news
 Route::get('/news', [PageController::class, 'news']);
 Route::get('/news/{news:slug}', [PageController::class, 'detail']);
-// search news
-Route::post('/search', [PageController::class, 'search']);
 // category
 Route::get('/category/{categories:slug}', [PageController::class, 'category']);
 
@@ -33,10 +48,16 @@ Route::prefix('admin')->group(function () {
 });
 
 
+// search news
+Route::post('/search', [SearchController::class, 'search']);
+// search
+Route::get('/admin/search', [SearchController::class, 'adminSearch']);
+Route::get('/admin/users/search', [SearchController::class, 'adminUsersSearch']);
 
-// auth
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [AuthController::class, 'register']);
+
+
+// Forgot password
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');

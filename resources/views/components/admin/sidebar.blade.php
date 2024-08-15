@@ -29,12 +29,6 @@ $secondaryMenus = [
         'icon' => 'bx bxs-home',
         'text' => 'Back to website',
     ],
-    [
-        'href' => '#',
-        'icon' => 'bx bxs-log-out-circle',
-        'text' => 'Logout',
-        'class' => 'logout',
-    ],
 ];
 ?>
 
