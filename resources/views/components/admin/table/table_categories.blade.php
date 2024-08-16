@@ -59,14 +59,14 @@
                                     <div id="{{ $item->slug }}"
                                         class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 ">
                                         <ul class="py-1 text-sm text-gray-700"
-                                            aria-labelledby="{{ $item->id }}-button">
+                                            aria-labelledby="{{ $item->slug }}-button">
                                             <li>
-                                                <a href="/admin/users/{{ $item->id }}/edit"
+                                                <a href="/admin/categories/{{ $item->slug }}/edit"
                                                     class="block px-4 py-2 hover:bg-gray-100">Edit</a>
                                             </li>
                                         </ul>
                                         <div class="py-1">
-                                            <form action="/admin/users/{{ $item->slug }}" method="POST"
+                                            <form action="/admin/categories/{{ $item->slug }}" method="POST"
                                                 class="flex items-center justify-center w-full hover:bg-gray-100 deleteForm">
                                                 @csrf
                                                 @method('DELETE')

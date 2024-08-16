@@ -32,7 +32,7 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|unique:categories,name|min:1',
+            'name' => 'required|string|unique:categories,name|min:2',
             'image' => 'image|mimes:jpeg,png,jpg,svg,webp|max:2048',
             'color' => 'required|string',
             'description' => 'required|string|min:3'
@@ -65,9 +65,50 @@ class CategoriesController extends Controller
     {
         $data = [
             'title' => 'Edit Category | Admin Portal MI',
-            'categories' => $category,
+            'category' => $category,
 
         ];
         return view('pages/admin/categories/edit', $data);
+    }
+
+    public function update(Request $request, Category $category)
+    {
+        $request->validate([
+            'name' => 'required|string|unique:categories,name,' . $category->slug . ',slug|min:2',
+            'image' => 'image|mimes:jpeg,png,jpg,svg,webp|max:2048',
+            'color' => 'required|string',
+            'description' => 'required|string|min:3'
+        ]);
+
+        // Membuat slug dari title
+        $slug = Str::slug($request->name, '-');
+
+        // Periksa apakah ada file image yang baru di-upload
+        if ($request->hasFile('image')) {
+            // Generate nama unik untuk file baru
+            $newImageName = $category->slug . '-' . time() . '.' . $request->image->extension();
+
+            // Hapus image lama jika ada
+            if ($category->image && file_exists(public_path('assets/category/' . $category->logo))) {
+                unlink(public_path('assets/category/' . $category->logo));
+            }
+
+            // Upload image baru
+            $request->image->move(public_path('assets/category'), $newImageName);
+            // Update nama image di database
+            $imageName = $newImageName;
+        } else {
+            $imageName = $category->image;
+        }
+
+        Category::where('slug', $category->slug)->update([
+            'name' => $request->name,
+            'slug' => $slug,
+            'logo' => $imageName,
+            'color' => $request->color,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('categories.index')->with('success', 'category updated successfully.');
     }
 }
