@@ -166,8 +166,10 @@ class NewsController extends Controller
     {
         // Hapus image lama jika ada
         $image = public_path('uploads/news/' . $news->image);
-        if (file_exists($image)) {
-            unlink($image);
+        if ($news->image !== 'helloTech.webp') {
+            if (file_exists($image)) {
+                unlink($image);
+            }
         }
 
         News::destroy($news->id);

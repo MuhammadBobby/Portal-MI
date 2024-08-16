@@ -57,6 +57,15 @@ class UsersController extends Controller
             return redirect()->back()->with('error', 'User ini masih terdaftar sebagai author di beberapa berita dan tidak dapat dihapus.');
         }
 
+        // Hapus image lama jika ada
+        $image = public_path('uploads/users/' . $user->image);
+        // periksa dahulu apakah bukan image default
+        if ($user->image !== 'default.svg') {
+            if (file_exists($image)) {
+                unlink($image);
+            }
+        }
+
 
         User::destroy($user->id);
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');

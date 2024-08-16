@@ -34,6 +34,17 @@ class AuthController extends Controller
 
         // cek kredential
         if (auth()->attempt($credentials, $remember)) {
+            // $user = Auth::user();
+
+            // // Cek apakah email sudah diverifikasi
+            // if ($user->email_verified_at == null) {
+            //     // Kirim email verifikasi
+            //     $user->sendEmailVerificationNotification(); //ini sebenarnya tidak error dan email dikirim
+
+            //     Auth::logout();
+            //     return redirect()->route('verification.notice')->with('success', 'Email has been sent. Please verify your email before logging in.');
+            // }
+
             $request->session()->regenerate();
             return redirect()->route('home');
         }
@@ -73,6 +84,7 @@ class AuthController extends Controller
 
         $user = User::create([
             'name' => $request->name,
+            'image' => 'default.svg',
             'nim' => $request->nim,
             'email' => $request->email,
             'password' => Hash::make($request->password),

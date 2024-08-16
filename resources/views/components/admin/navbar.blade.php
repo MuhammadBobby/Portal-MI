@@ -12,7 +12,7 @@
     <label for="switch-mode" class="switch-mode"></label>
     <a href="/profile" class="profile">
         @if (Auth::check())
-            <img src="/uploads/users/${Auth::user()->image}">
+            <img src="/uploads/users/{{ Auth::user()->image }}">
         @else
             <img src="/assets/images/helloTech.webp">
         @endif
