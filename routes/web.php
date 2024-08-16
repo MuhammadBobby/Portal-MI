@@ -26,6 +26,7 @@ Route::post('/email/verification-notification', [VerificationController::class, 
 
 
 Route::get('/', [PageController::class, 'index'])->name('home');
+Route::get('/profile', [PageController::class, 'profile']);
 // news
 Route::get('/news', [PageController::class, 'news']);
 Route::get('/news/{news:slug}', [PageController::class, 'detail']);
