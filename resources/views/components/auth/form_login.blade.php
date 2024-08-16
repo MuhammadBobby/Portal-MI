@@ -6,39 +6,44 @@
                 <a href="/">
                     <img src="/assets/logo/logoMI.png" alt="Logo" class="w-12 h-12 mx-auto mb-2"></a>
                 <h2 class="text-2xl font-bold text-gray-800">Welcome back</h2>
-                <p class="text-gray-600">Sign in to your account. Don't have an account? <a href="#"
-                        class="text-primary hover:underline">Sign up.</a></p>
+                <p class="text-gray-600">Sign in to your account. Don't have an account? <a
+                        href="{{ route('register') }}" class="text-primary hover:underline">Sign up.</a></p>
             </div>
 
             <form action="{{ route('login') }}" method="POST" class="space-y-6">
                 @csrf
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                    <input type="email" name="email" id="email" value="{{ old('email') }}" required
+                    <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus
+                        placeholder="email@example.com"
                         class="block w-full mt-1 text-gray-900 placeholder-gray-500 bg-white border border-gray-300 rounded-md focus:border-primary focus:ring-primary sm:text-sm">
                     @error('email')
                         <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
                     @enderror
                 </div>
 
-                <div>
+                <div class="relative">
                     <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                    <input type="password" name="password" id="password" required
+                    <input type="password" name="password" id="password" required placeholder="********"
                         class="block w-full mt-1 text-gray-900 placeholder-gray-500 bg-white border border-gray-300 rounded-md focus:border-primary focus:ring-primary sm:text-sm">
-                    @error('password')
-                        <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
-                    @enderror
+                    {{-- lihat password --}}
+                    <button type="button" id="togglePassword" class="absolute right-0 top-1/2">
+                        👁️
+                    </button>
                 </div>
+                @error('password')
+                    <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
+                @enderror
 
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
-                        <input id="remember_me" name="remember" type="checkbox"
+                        <input id="remember" name="remember" type="checkbox"
                             class="w-4 h-4 bg-white border-gray-300 rounded text-primary focus:ring-primary">
-                        <label for="remember_me" class="block ml-2 text-sm text-gray-600">Remember me</label>
+                        <label for="remember" class="block ml-2 text-sm text-gray-600">Remember me</label>
                     </div>
 
                     <div class="text-sm">
-                        <a href="#" class="font-medium text-primary hover:underline">Forgot password?</a>
+                        <a href="/forgot-password" class="font-medium text-primary hover:underline">Forgot password?</a>
                     </div>
                 </div>
 

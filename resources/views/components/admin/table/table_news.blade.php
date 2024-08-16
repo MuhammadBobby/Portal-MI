@@ -9,8 +9,8 @@
         <div class="relative overflow-hidden">
             <div class="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
                 <div class="w-full md:w-1/2">
-                    <form class="flex items-center">
-                        <label for="simple-search" class="sr-only">Search</label>
+                    <form class="flex items-center" action="/admin/search" method="GET">
+                        <label for="search" class="sr-only">Search</label>
                         <div class="relative w-full">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="currentColor"
@@ -20,7 +20,7 @@
                                         clip-rule="evenodd" />
                                 </svg>
                             </div>
-                            <input type="text" id="simple-search"
+                            <input type="text" id="search" name="search"
                                 class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="Search" required="">
                         </div>
@@ -55,56 +55,63 @@
                         @php
                             $no = 1;
                         @endphp
-                        @foreach ($data as $item)
-                            <tr class="leading-relaxed text-center border-b">
-                                <td>{{ $no++ }}</td>
-                                <td scope="row"
-                                    class="px-4 py-3 font-medium text-left text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ Str::limit($item->title, 40) }}</td>
-                                <td class="px-4 py-3">{{ $item->author->name }}</td>
-                                <td class="px-4 py-3 text-[{{ $item->category->color }}] font-semibold">
-                                    {{ $item->category->name }}
-                                </td>
-                                <td class="px-4 py-3">
-                                    {{ Carbon::parse($item->created_at)->translatedFormat('l, j F Y H:i') . ' WIB' }}
-                                </td>
-                                <td class="flex items-center justify-end px-4 py-3">
-                                    <button id="{{ $item->slug }}-button" data-dropdown-toggle="{{ $item->slug }}"
-                                        class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
-                                        type="button">
-                                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                        </svg>
-                                    </button>
+                        @if (count($data) > 0)
+                            @foreach ($data as $item)
+                                <tr class="leading-relaxed text-center border-b">
+                                    <td>{{ $no++ }}</td>
+                                    <td scope="row"
+                                        class="px-4 py-3 font-medium text-left text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{ Str::limit($item->title, 40) }}</td>
+                                    <td class="px-4 py-3">{{ $item->author->name }}</td>
+                                    <td class="px-4 py-3 text-[{{ $item->category->color }}] font-semibold">
+                                        {{ $item->category->name }}
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        {{ Carbon::parse($item->created_at)->translatedFormat('l, j F Y H:i') . ' WIB' }}
+                                    </td>
+                                    <td class="flex items-center justify-end px-4 py-3">
+                                        <button id="{{ $item->slug }}-button"
+                                            data-dropdown-toggle="{{ $item->slug }}"
+                                            class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
+                                            type="button">
+                                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
+                                                viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                            </svg>
+                                        </button>
 
-                                    <div id="{{ $item->slug }}"
-                                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 ">
-                                        <ul class="py-1 text-sm text-gray-700"
-                                            aria-labelledby="{{ $item->slug }}-button">
-                                            <li>
-                                                <a href="/admin/news/{{ $item->slug }}?callbackUrl={{ urlencode(url()->full()) }}"
-                                                    class="block px-4 py-2 hover:bg-gray-100">Show</a>
-                                            </li>
-                                            <li>
-                                                <a href="/admin/news/{{ $item->slug }}/edit"
-                                                    class="block px-4 py-2 hover:bg-gray-100">Edit</a>
-                                            </li>
-                                        </ul>
-                                        <div class="py-1">
-                                            <form action="/admin/news/{{ $item->slug }}" method="POST"
-                                                class="flex items-center justify-center w-full hover:bg-gray-100 deleteForm">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="block px-4 py-2 text-sm text-gray-700"
-                                                    onclick="deleteConfirm(event)">Delete</button>
-                                            </form>
+                                        <div id="{{ $item->slug }}"
+                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 ">
+                                            <ul class="py-1 text-sm text-gray-700"
+                                                aria-labelledby="{{ $item->slug }}-button">
+                                                <li>
+                                                    <a href="/admin/news/{{ $item->slug }}?callbackUrl={{ urlencode(url()->full()) }}"
+                                                        class="block px-4 py-2 hover:bg-gray-100">Show</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/admin/news/{{ $item->slug }}/edit"
+                                                        class="block px-4 py-2 hover:bg-gray-100">Edit</a>
+                                                </li>
+                                            </ul>
+                                            <div class="py-1">
+                                                <form action="/admin/news/{{ $item->slug }}" method="POST"
+                                                    class="flex items-center justify-center w-full hover:bg-gray-100 deleteForm">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="block px-4 py-2 text-sm text-gray-700"
+                                                        onclick="deleteConfirm(event)">Delete</button>
+                                                </form>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="6" class="text-red-600">No Data</td>
                             </tr>
-                        @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>

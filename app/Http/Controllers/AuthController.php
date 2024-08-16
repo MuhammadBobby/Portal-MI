@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Redirect;
 
 
 class AuthController extends Controller
@@ -13,8 +17,10 @@ class AuthController extends Controller
         $data = [
             'title' => 'Login | Admin Portal MI',
         ];
-        return view('auth.login', $data);
+        return view('auth/login', $data);
     }
+
+
 
     public function login(Request $request)
     {
@@ -23,16 +29,28 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
+        $credentials = $request->only('email', 'password');
+        $remember = $request->has('remember');
+
         // cek kredential
-        if (auth()->attempt($credentials = $request->only('email', 'password'))) {
+        if (auth()->attempt($credentials, $remember)) {
+            // $user = Auth::user();
+
+            // // Cek apakah email sudah diverifikasi
+            // if ($user->email_verified_at == null) {
+            //     // Kirim email verifikasi
+            //     $user->sendEmailVerificationNotification(); //ini sebenarnya tidak error dan email dikirim
+
+            //     Auth::logout();
+            //     return redirect()->route('verification.notice')->with('success', 'Email has been sent. Please verify your email before logging in.');
+            // }
+
             $request->session()->regenerate();
             return redirect()->route('home');
         }
 
         // Jika gagal, kembalikan ke halaman login dengan error
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+        return Redirect::back()->with('error', 'Invalid email or password! Please input correct email and password.');
     }
 
 
@@ -42,6 +60,40 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
+        return redirect()->route('home');
+    }
+
+
+    public function showRegistrationForm()
+    {
+        $data = [
+            'title' => 'Register | Admin Portal MI',
+        ];
+        return view('auth/register', $data);
+    }
+
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'nim' => 'required|numeric|unique:users|min:8',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|confirmed|min:8',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'image' => 'default.svg',
+            'nim' => $request->nim,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'member',
+            'remember_token' => Str::random(10),
+        ]);
+
+        // otomatis login
+        Auth::login($user);
         return redirect()->route('home');
     }
 }
