@@ -9,6 +9,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Category extends Model
 {
     use HasFactory;
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    // fillable
     protected $fillable = ['name', 'logo', 'color', 'slug', 'description'];
 
     // relation model

@@ -2,7 +2,8 @@
 
 <section class="bg-white rounded-lg shadow-xl bg-opacity-70 backdrop-blur-sm">
     <div class="max-w-2xl px-4 py-8 mx-auto">
-        <h2 class="mb-4 text-xl font-bold text-gray-900">{{ $method == 'POST' ? 'Add a' : 'Update ' }} news to Portal MI
+        <h2 class="mb-4 text-xl font-bold text-gray-900">{{ $method == 'POST' ? 'Add a' : 'Update ' }} Category to Portal
+            MI
         </h2>
         <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -29,8 +30,8 @@
                     <div class="flex">
                         <input type="file" name="image" id="image"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block px-2.5 w-full"
-                            value="{{ $values->image ?? old('image') }}" placeholder="Image Category..."
-                            accept="image/*" {{ $method == 'POST' ? 'required' : '' }}>
+                            value="{{ $values->logo ?? old('image') }}" placeholder="Image Category..." accept="image/*"
+                            {{ $method == 'POST' ? 'required' : '' }}>
                     </div>
                     @error('image')
                         <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
@@ -44,17 +45,18 @@
                     <div class="w-full">
                         <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Current Image</label>
                         <div class="flex gap-1">
-                            <img src="/uploads/news/{{ old('image') }}" alt="current image" class="object-cover w-1/2">
+                            <img src="/assets/category/{{ old('image') }}" alt="current image"
+                                class="object-cover w-1/2">
                             <p class="text-sm text-primary">{{ old('image') }}</p>
                         </div>
                     </div>
-                @elseif (isset($values->image))
+                @elseif (isset($values->logo))
                     <div class="w-full">
                         <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Current Image</label>
                         <div class="flex gap-1">
-                            <img src="/uploads/news/{{ $values->image }}" alt="current image"
+                            <img src="/assets/category/{{ $values->logo }}" alt="current image"
                                 class="object-cover w-1/2">
-                            <p class="text-sm text-primary">{{ $values->image }}</p>
+                            <p class="text-sm text-primary">{{ $values->logo }}</p>
                         </div>
                     </div>
                 @endif
@@ -62,8 +64,8 @@
                 {{-- color --}}
                 <div class="w-full">
                     <label for="color" class="block mb-2 text-sm font-medium text-gray-900 ">Color</label>
-                    <input type="color" name="color" id="color" value="#000000"
-                        value="{{ $values->color ?? old('color') }}" placeholder="color News..." required="">
+                    <input type="color" name="color" id="color" value="{{ $values->color ?? old('color') }}"
+                        placeholder="color Category..." required="">
                     @error('color')
                         <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
                     @enderror
@@ -88,9 +90,9 @@
             {{-- BUTTON --}}
             <button type="submit"
                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-{{ $method == 'POST' ? 'primary' : '[#FFD700]' }} rounded-lg focus:ring-4 focus:ring-primary">
-                {{ $method == 'POST' ? 'Upload News' : 'Update News' }}
+                {{ $method == 'POST' ? 'Upload Category' : 'Update Category' }}
             </button>
-            <a href="/admin/news"
+            <a href="/admin/categories"
                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-gray-400 rounded-lg focus:ring-4 focus:ring-gray-400">
                 Cancel
             </a>
