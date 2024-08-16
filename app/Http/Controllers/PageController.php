@@ -55,15 +55,6 @@ class PageController extends Controller
     }
 
 
-    public function profile()
-    {
-        $data = [
-            'title' => 'Profile | Portal MI',
-        ];
-        return view('pages/profile', $data);
-    }
-
-
     public function admin()
     {
         $data = [
