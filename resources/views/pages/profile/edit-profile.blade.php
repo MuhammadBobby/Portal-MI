@@ -13,8 +13,34 @@
 
                     </div>
 
-                    <form action="{{ route('register') }}" method="POST" class="space-y-6">
+                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data"
+                        class="space-y-6">
                         @csrf
+
+                        <div class="flex items-center justify-center space-x-6">
+                            <div class="relative group">
+                                <img id="image" src="/uploads/users/{{ Auth::user()->image }}"
+                                    class="object-cover w-24 h-24 border-4 rounded-full border-secondary "
+                                    alt="Profile Image">
+                                <input type="file" id="profileImageInput" name="image" accept="image/*"
+                                    class="hidden">
+                                <div class="absolute inset-0 transition-opacity bg-black opacity-0 cursor-pointer"
+                                    onclick="document.getElementById('profileImageInput').click();"></div>
+
+                                {{-- pen icon --}}
+                                <svg class="absolute w-6 h-6 transition-all cursor-pointer text-primary bottom-1 right-1 group-hover:scale-110"
+                                    onclick="document.getElementById('profileImageInput').click();" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                    viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28" />
+                                </svg>
+                            </div>
+                        </div>
+                        @error('image')
+                            <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
+                        @enderror
 
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
@@ -59,8 +85,9 @@
 
                         <div>
                             <label for="year" class="block text-sm font-medium text-gray-700">Year of Entry</label>
-                            <input type="date" name="year" id="year"
-                                value="{{ old('nim') ?? Auth::user()->year_of_entry }}" placeholder="" required
+                            <input type="number" name="year" id="year"
+                                value="{{ old('nim') ?? Auth::user()->year_of_entry }}" placeholder="2022"
+                                min="2010"
                                 class="block w-full mt-1 text-gray-900 placeholder-gray-500 bg-white border border-gray-300 rounded-md focus:border-primary focus:ring-primary sm:text-sm">
                             @error('year')
                                 <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
@@ -69,10 +96,12 @@
 
 
 
-                        <div class="mt-3">
+                        <div class="flex gap-2 mt-3">
                             <button type="submit"
-                                class="flex justify-center w-full px-4 py-2 mt-5 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">Upgarde
+                                class="flex justify-center px-4 py-2 mt-5 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">Upgarde
                                 Your Profile</button>
+                            <a href="/profile"
+                                class="flex justify-center px-4 py-2 mt-5 text-sm font-medium text-white bg-gray-400 border border-transparent rounded-md shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400">Cancel</a>
                         </div>
 
                     </form>
@@ -85,7 +114,19 @@
                 </div>
             </div>
         </div>
-
-
     </x-elements.section_template>
+
+
+    <script>
+        document.getElementById('profileImageInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('image').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 </x-layout_template>

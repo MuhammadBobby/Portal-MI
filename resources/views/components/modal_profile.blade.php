@@ -8,7 +8,7 @@
     <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownLargeButton">
         @if (Auth::user()->role == 'admin')
             <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a>
+                <a href="/admin" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a>
             </li>
         @endif
         <li>

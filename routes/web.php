@@ -23,8 +23,9 @@ Route::get('/category/{categories:slug}', [PageController::class, 'category']);
 
 
 // profile
-Route::get('/profile', [ProfileController::class, 'profile']);
+Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
 Route::get('/profile/edit', [ProfileController::class, 'editProfile']);
+Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
 
 
 // admin
