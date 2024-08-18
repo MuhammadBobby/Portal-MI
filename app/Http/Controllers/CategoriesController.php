@@ -98,7 +98,7 @@ class CategoriesController extends Controller
             // Update nama image di database
             $imageName = $newImageName;
         } else {
-            $imageName = $category->image;
+            $imageName = $category->logo;
         }
 
 

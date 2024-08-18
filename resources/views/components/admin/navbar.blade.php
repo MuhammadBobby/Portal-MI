@@ -14,7 +14,7 @@
         @if (Auth::check())
             <img src="/uploads/users/{{ Auth::user()->image }}">
         @else
-            <img src="/assets/images/helloTech.webp">
+            <img src="/uploads/users/default.svg">
         @endif
     </a>
 </nav>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 
@@ -77,5 +78,34 @@ class ProfileController extends Controller
         ]);
 
         return redirect()->route('profile')->with('success', 'Profile updated successfully.');
+    }
+
+
+    public function changePassword()
+    {
+        $data = [
+            'title' => 'Change Password | Portal MI',
+        ];
+        return view('pages/profile/change-password', $data);
+    }
+
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        // Periksa apakah password lama sesuai
+        if (!Hash::check($request->old_password, auth()->user()->password)) {
+            return back()->with(['error' => 'The old password is incorrect.']);
+        }
+
+        User::where('id', auth()->user()->id)->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('profile')->with('success', 'Password updated successfully.');
     }
 }

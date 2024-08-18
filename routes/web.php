@@ -25,8 +25,9 @@ Route::get('/category/{categories:slug}', [PageController::class, 'category']);
 // profile
 Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
 Route::get('/profile/edit', [ProfileController::class, 'editProfile']);
-Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
-
+Route::patch('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
+Route::get('/profile/changePassword', [ProfileController::class, 'changePassword']);
+Route::patch('/profile/updatePassword', [ProfileController::class, 'updatePassword']);
 
 // admin
 Route::get('/admin', [PageController::class, 'admin']);
