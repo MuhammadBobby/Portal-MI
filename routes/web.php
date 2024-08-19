@@ -76,7 +76,7 @@ Route::get('/email/verify', [VerificationController::class, 'notice'])->name('ve
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
     ->middleware(['auth', 'signed'])
     ->name('verification.verify');
-Route::post('/email/verification-notification', [VerificationController::class, 'resend'])->middleware(['throttle:6,1'])->name('verification.resend');
+Route::post('/email/verification-notification', [VerificationController::class, 'resend'])->middleware(['auth'])->name('verification.resend');
 
 
 // Forgot password
