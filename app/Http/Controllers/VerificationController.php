@@ -19,13 +19,9 @@ class VerificationController extends Controller
 
     public function verify(EmailVerificationRequest $request)
     {
-        die($request);
         $request->fulfill();
 
-        // set email verified
-        $request->user()->email_verified_at = now();
-
-        return redirect()->route('/')->with('success', 'Your email has been verified!');
+        return redirect()->route('home')->with('success', 'Your email has been verified!');
     }
 
 

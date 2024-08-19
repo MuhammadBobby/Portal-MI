@@ -34,18 +34,17 @@ class AuthController extends Controller
 
         // cek kredential
         if (auth()->attempt($credentials, $remember)) {
-            // $user = Auth::user();
-
-            // // Cek apakah email sudah diverifikasi
-            // if ($user->email_verified_at == null) {
-            //     // Kirim email verifikasi
-            //     $user->sendEmailVerificationNotification(); //ini sebenarnya tidak error dan email dikirim
-
-            //     Auth::logout();
-            //     return redirect()->route('verification.notice')->with('success', 'Email has been sent. Please verify your email before logging in.');
-            // }
-
+            $user = Auth::user();
             $request->session()->regenerate();
+
+            // Cek apakah email sudah diverifikasi
+            if ($user->email_verified_at == null) {
+                // Kirim email verifikasi
+                $user->sendEmailVerificationNotification(); //ini sebenarnya tidak error dan email dikirim
+
+                return redirect()->route('verification.notice')->with('success', 'Email has been sent. Please verify your email before logging in.');
+            }
+
             return redirect()->route('home');
         }
 
@@ -92,8 +91,12 @@ class AuthController extends Controller
             'remember_token' => Str::random(10),
         ]);
 
-        // otomatis login
-        Auth::login($user);
-        return redirect()->route('home');
+        // Kirim email verifikasi setelah registrasi
+        $user->sendEmailVerificationNotification();
+        return redirect()->route('verification.notice')->with('success', 'Email has been sent. Please verify your email before logging in.');
+
+        // // otomatis login
+        // Auth::login($user);
+        // return redirect()->route('home');
     }
 }

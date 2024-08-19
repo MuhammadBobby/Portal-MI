@@ -1,7 +1,7 @@
 <nav id="navbar"
     class="fixed top-0 z-20 w-full bg-white border-b border-gray-200 shadow-md bg-opacity-30 backdrop-blur-sm md:bg-transparent md:backdrop-blur-0 md:border-0 md:shadow-none">
     <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-3 mx-auto md:px-8">
-        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="/assets/logo/logoMI.png" class="h-10" alt="Logo Manajemen Informatika">
             <span class="self-center text-2xl font-bold text-primary whitespace-nowrap">Portal MI</span>
         </a>

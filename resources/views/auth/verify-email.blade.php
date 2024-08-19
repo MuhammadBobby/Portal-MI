@@ -10,7 +10,7 @@
             @endif
 
             <p class="text-sm font-light md:text-base">Before proceeding, please check your email for a verification
-                link.</p>
+                link. Please check your spam folder if you did not receive the email.</p>
             <p class="text-sm font-semibold md:text-base">If you did not receive the email, klik button for re-send
                 email.
             </p>

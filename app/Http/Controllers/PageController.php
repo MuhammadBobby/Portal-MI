@@ -53,16 +53,4 @@ class PageController extends Controller
         ];
         return view('pages/category/index', $data);
     }
-
-
-    public function admin()
-    {
-        $data = [
-            'title' => 'Admin Portal MI',
-            'users' => User::all(),
-            'news' => News::latest()->with('author', 'category')->get(),
-            'categories' => Category::all(),
-        ];
-        return view('pages/admin/index', $data);
-    }
 }

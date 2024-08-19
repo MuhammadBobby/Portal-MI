@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ForgotPasswordController;
@@ -11,45 +12,54 @@ use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\VerificationController;
-
-
+use App\Http\Middleware\CheckRole;
 
 Route::get('/', [PageController::class, 'index'])->name('home');
-// news
-Route::get('/news', [PageController::class, 'news']);
-Route::get('/news/{news:slug}', [PageController::class, 'detail']);
-// category
-Route::get('/category/{categories:slug}', [PageController::class, 'category']);
+
+Route::middleware([CheckRole::class . ':member,admin'])->group(
+    function () {
+        // news
+        Route::get('/news', [PageController::class, 'news']);
+        Route::get('/news/{news:slug}', [PageController::class, 'detail']);
+        // category
+        Route::get('/category/{categories:slug}', [PageController::class, 'category']);
 
 
-// profile
-Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
-Route::get('/profile/edit', [ProfileController::class, 'editProfile']);
-Route::patch('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
-Route::get('/profile/changePassword', [ProfileController::class, 'changePassword']);
-Route::patch('/profile/updatePassword', [ProfileController::class, 'updatePassword']);
+        // profile
+        Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+        Route::get('/profile/edit', [ProfileController::class, 'editProfile']);
+        Route::patch('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
+        Route::get('/profile/changePassword', [ProfileController::class, 'changePassword']);
+        Route::patch('/profile/updatePassword', [ProfileController::class, 'updatePassword']);
+    }
+);
 
-// admin
-Route::get('/admin', [PageController::class, 'admin']);
-// admin/news (resurceful)
-Route::prefix('admin')->group(function () {
-    Route::resource('news', NewsController::class);
+
+
+Route::middleware([CheckRole::class . ':admin'])->group(function () {
+    // admin
+    Route::get('/admin', [AdminController::class, 'admin']);
+    // admin/news (resurceful)
+    Route::prefix('admin')->group(function () {
+        Route::resource('news', NewsController::class);
+    });
+    // admin/users (resurceful)
+    Route::prefix('admin')->group(function () {
+        Route::resource('users', UsersController::class);
+    });
+    // admin/categories (resurceful)
+    Route::prefix('admin')->group(function () {
+        Route::resource('categories', CategoriesController::class);
+    });
+
+
+    // search news
+    Route::post('/search', [SearchController::class, 'search']);
+    // search
+    Route::get('/admin/search', [SearchController::class, 'adminSearch']);
+    Route::get('/admin/users/search', [SearchController::class, 'adminUsersSearch']);
 });
-// admin/users (resurceful)
-Route::prefix('admin')->group(function () {
-    Route::resource('users', UsersController::class);
-});
-// admin/categories (resurceful)
-Route::prefix('admin')->group(function () {
-    Route::resource('categories', CategoriesController::class);
-});
 
-
-// search news
-Route::post('/search', [SearchController::class, 'search']);
-// search
-Route::get('/admin/search', [SearchController::class, 'adminSearch']);
-Route::get('/admin/users/search', [SearchController::class, 'adminUsersSearch']);
 
 
 
@@ -63,8 +73,10 @@ Route::post('/register', [AuthController::class, 'register']);
 
 // Verifikasi email
 Route::get('/email/verify', [VerificationController::class, 'notice'])->name('verification.notice');
-Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
-Route::post('/email/verification-notification', [VerificationController::class, 'resend'])->name('verification.resend');
+Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
+    ->middleware(['auth', 'signed'])
+    ->name('verification.verify');
+Route::post('/email/verification-notification', [VerificationController::class, 'resend'])->middleware(['throttle:6,1'])->name('verification.resend');
 
 
 // Forgot password
