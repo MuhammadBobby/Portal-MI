@@ -60,9 +60,10 @@
                 </div>
 
                 <div class="flex mt-6 space-x-4">
-                    <a href="#"
+                    <a href="{{ route('auth.google') }}"
                         class="flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-600 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                        <img src="{{ asset('images/google.svg') }}" class="w-5 h-5 mr-2" alt="Google"> Sign in
+                        <img src="{{ asset('assets/logo/logoGoogle.svg') }}" class="w-5 h-5 mr-2" alt="Google"> Sign
+                        in
                         with
                         Google
                     </a>

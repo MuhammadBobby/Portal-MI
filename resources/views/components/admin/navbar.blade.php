@@ -11,10 +11,10 @@
     <input type="checkbox" id="switch-mode" class="hidden">
     <label for="switch-mode" class="switch-mode"></label>
     <a href="/profile" class="profile">
-        @if (Auth::check())
+        @if (Auth::user()->google_id == null)
             <img src="/uploads/users/{{ Auth::user()->image }}">
         @else
-            <img src="/uploads/users/default.svg">
+            <img src="{{ Auth::user()->image }}">
         @endif
     </a>
 </nav>

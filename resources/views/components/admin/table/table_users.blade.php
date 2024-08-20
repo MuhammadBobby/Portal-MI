@@ -46,8 +46,15 @@
                                     <td>{{ $no++ }}</td>
                                     <td scope="row"
                                         class="flex items-center gap-1 px-4 py-3 font-medium text-left text-gray-900 whitespace-nowrap dark:text-white">
-                                        <img src="/uploads/users/{{ $item->image }}" alt="{{ $item->name }}"
-                                            class="w-8 h-8 rounded-full">
+
+                                        @if ($item->google_id == null)
+                                            <img src="/uploads/users/{{ $item->image }}" alt="{{ $item->name }}"
+                                                class="w-8 h-8 rounded-full">
+                                        @else
+                                            <img src="{{ $item->image }}" alt="{{ $item->name }}"
+                                                class="w-8 h-8 rounded-full">
+                                        @endif
+
                                         <span>{{ Str::limit($item->name, 40) }}</span>
                                     </td>
                                     <td class="px-4 py-3">{{ $item->email }}</td>

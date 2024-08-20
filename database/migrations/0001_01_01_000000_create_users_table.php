@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('class')->nullable();
             $table->string('year_of_entry')->nullable();
             $table->enum('role', ['admin', 'member'])->default('member');
+            $table->string('google_id')->nullable()->unique();
             $table->rememberToken();
             $table->timestamps();
         });

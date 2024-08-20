@@ -1,10 +1,16 @@
 <button id="{{ Auth::user()->name }}" data-dropdown-toggle="dropdownNavbarUser"
     class="flex items-center justify-between w-full px-3 py-2">
-    <img src="/uploads/users/{{ Auth::user()->image }}" alt="{{ Auth::user()->name }}"
-        class="w-10 h-10 border-2 rounded-full border-secondary">
+    @if (Auth::user()->google_id == null)
+        <img src="/uploads/users/{{ Auth::user()->image }}" alt="{{ Auth::user()->name }}"
+            class="w-10 h-10 border-2 rounded-full border-secondary">
+    @else
+        <img src="{{ Auth::user()->image }}" alt="{{ Auth::user()->name }}"
+            class="w-10 h-10 border-2 rounded-full border-secondary">
+    @endif
 </button>
 <!-- Dropdown menu -->
-<div id="dropdownNavbarUser" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow min-w-44">
+<div id="dropdownNavbarUser"
+    class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow min-w-44">
     <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownLargeButton">
         @if (Auth::user()->role == 'admin')
             <li>

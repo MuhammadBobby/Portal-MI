@@ -20,9 +20,16 @@
 
                         <div class="flex items-center justify-center space-x-6">
                             <div class="relative group">
-                                <img id="image" src="/uploads/users/{{ Auth::user()->image }}"
-                                    class="object-cover w-24 h-24 border-4 rounded-full border-secondary "
-                                    alt="Profile Image">
+                                @if (Auth::user()->google_id == null)
+                                    <img id="image" src="/uploads/users/{{ Auth::user()->image }}"
+                                        class="object-cover w-24 h-24 border-4 rounded-full border-secondary "
+                                        alt="Profile Image">
+                                @else
+                                    <img id="image" src="{{ Auth::user()->image }}"
+                                        class="object-cover w-24 h-24 border-4 rounded-full border-secondary "
+                                        alt="Profile Image">
+                                @endif
+
                                 <input type="file" id="profileImageInput" name="image" accept="image/*"
                                     class="hidden">
                                 <div class="absolute inset-0 transition-opacity bg-black opacity-0 cursor-pointer"
