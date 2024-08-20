@@ -34,6 +34,7 @@ class GoogleController extends Controller
                     'nim' => 0,
                     'role' => 'member',
                     'remember_token' => Str::random(10),
+                    'email_verified_at' => now(),
                 ]);
 
                 Auth::login($user, true);
