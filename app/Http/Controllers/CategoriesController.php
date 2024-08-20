@@ -112,4 +112,18 @@ class CategoriesController extends Controller
 
         return redirect()->route('categories.index')->with('success', 'category updated successfully.');
     }
+
+    public function destroy(Category $category)
+    {
+        // Hapus image lama jika ada
+        $image = public_path('assets/category/' . $category->logo);
+        if ($category->logo !== 'helloTech.webp') {
+            if (file_exists($image)) {
+                unlink($image);
+            }
+        }
+
+        Category::destroy($category->id);
+        return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
+    }
 }
