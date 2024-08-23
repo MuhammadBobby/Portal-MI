@@ -40,6 +40,7 @@ Route::middleware([CheckRole::class . ':member,admin'])->group(
 Route::middleware([CheckRole::class . ':admin'])->group(function () {
     // admin
     Route::get('/admin', [AdminController::class, 'admin']);
+    Route::get('/admin/download', [AdminController::class, 'download']);
     // admin/news (resurceful)
     Route::prefix('admin')->group(function () {
         Route::resource('news', NewsController::class);

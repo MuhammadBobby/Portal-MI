@@ -19,4 +19,15 @@ class AdminController extends Controller
         ];
         return view('pages/admin/index', $data);
     }
+
+
+    public function download()
+    {
+        $data = [
+            'title' => 'Download | Admin Portal MI',
+            'news' => News::latest()->with('author', 'category')->take(30)->get(),
+            'field' => ['No.', 'Title', 'Author', 'Category', 'Created At'],
+        ];
+        return view('pages/admin/download', $data);
+    }
 }

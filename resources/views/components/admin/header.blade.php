@@ -22,7 +22,7 @@
      </div>
 
      @if ($mini_title == 'Home')
-         <a href="#" class="btn-download">
+         <a href="/admin/download" class="btn-download">
              <i class='bx bxs-cloud-download'></i>
              <span class="text">Download PDF</span>
          </a>
