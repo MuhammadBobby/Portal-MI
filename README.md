@@ -8,7 +8,7 @@
 
 ## 📸 Portal MI
 
-![Image Portal MI](public/home.png)
+![Image Portal MI](public/assets/home.png)
 
 ## ✨ Pages & Menus
 
